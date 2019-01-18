@@ -41,3 +41,18 @@ if (credits >= 50 && !isBonus) {
 console.log(c);
 
 //new code
+let d: number = 8;
+let time: number = 120;
+let out3: string = '';
+
+d %= 4;
+
+if (d === 0 && time <= 200) {
+    out3 = 'check';
+} else if (time > 200) {
+    out3 = 'Time out';
+} else {
+    out3 = 'Run Forest, Run!'
+}
+
+console.log(out3);
