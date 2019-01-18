@@ -4,8 +4,8 @@ let lineCount: number = 4;
 
 let star: string = '*'
 
-while (lineCount - 4 <= 4) {
-    star = 
+while (lineCount - 4 <= 3) {
     console.log(star);
     lineCount++;
+    star += '*';
 }
