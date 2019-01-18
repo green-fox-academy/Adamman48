@@ -2,4 +2,10 @@
 
 let lineCount: number = 4;
 
-for (let i: number = 1)
+let star: string = '*'
+
+while (lineCount - 4 <= 4) {
+    star = 
+    console.log(star);
+    lineCount++;
+}
