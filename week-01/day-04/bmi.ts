@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 let massInKg: number = 91.2;
 let heightInM: number = 1.87;

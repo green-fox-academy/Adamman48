@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 console.log('Adam Pisky-Nagy');
 console.log(29);

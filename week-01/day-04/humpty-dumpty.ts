@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 //Modify this program to console.log Humpty Dumpty riddle correctly
 

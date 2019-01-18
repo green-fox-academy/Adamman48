@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 let a: number = 3;
 a += 10;
@@ -11,7 +11,7 @@ b -= 7;
 console.log(b);
 
 let c: number = 44;
-c += c
+c += c;
 
 console.log(c);
 
@@ -33,7 +33,7 @@ console.log(f1 > f2);
 
 let g1: number = 350;
 let g2: number = 200;
-g2 += g2
+g2 += g2;
 
 console.log(g2 > g1);
 
