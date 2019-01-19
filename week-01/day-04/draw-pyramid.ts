@@ -3,16 +3,17 @@
 export {}
 
 let lineCount: number = 4;
-let star: any = '*'
-let space: any = ' ';
-let rep: number = lineCount;
+let star: any = '*';
+let space: any = '';
 
-for (let i: number = 1; i <= lineCount; i++) {
-    console.log(space.repeat(rep));
-    for (let u: number = 1; u <= lineCount * 2; u++) {
-        console.log(star.repeat(u));
-    rep--;
-    i++;
-    u++;
+for (let i: number = 0; i < lineCount; i++) {
+    for (let sp: number = 0; sp < lineCount - i; sp++) {
+    space += '0';
     }
+    for (let st: number = 1; st < i; st++) {
+    star += '*'
+    }
+console.log(space + star);
+space = '';
+star = '';        
 }
