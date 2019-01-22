@@ -20,4 +20,4 @@ let hashmap = {
 out = notSoCrypticMessage.map(e => 
     hashmap[e]).join('');
 
-    console.log(out);  
+console.log(out);  
