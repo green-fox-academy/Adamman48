@@ -15,11 +15,6 @@ function appendA(a: string[]) {
     return a;
 }
 
-/*
-function appendA(e =>
-    a = a.mape.concat('a')
-    )
-*/
 console.log(appendA(far));
 
 export = appendA;
