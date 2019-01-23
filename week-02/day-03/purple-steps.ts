@@ -14,17 +14,17 @@ function drawSquare(x, y, color) {
 }
 
 let colorOfSteps: string = 'purple';
-let start: number = 14;
+let size: number = 14;
 
-let size: number = start;
-let numOfSteps: number = ((canvas.height - start) / size) - ((canvas.height / 3) / size);
+let start: number = size;
+let numOfSteps: number = ((canvas.height - size) / start) - ((canvas.height / 3) / start);
 
 for (let i: number = 0; i < numOfSteps; i++) {
-    if (size > canvas.height / 2 || size === 0) {
+    if (start > canvas.height / 2 || start === 0) {
         document.write('Ooops...The picture cannot load with this input! Please provide a number between 1 - 200!') 
         break; }
-    drawSquare(start, size, colorOfSteps);
-    start += size;
+    drawSquare(size, start, colorOfSteps);
+    size += start;
 }
 
 /*
