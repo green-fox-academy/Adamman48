@@ -13,7 +13,7 @@ let width: number = 0;
 for (let i: number = 0; i <= 600; i = i + 600) {
     ctx.beginPath();
     ctx.moveTo(i, height);
-    ctx.lineTo(canvas.width - i, canvas.height - height);
+    ctx.lineTo(canvas.width - i, canvas.height);
     if (i === 0) {
         ctx.strokeStyle = 'green';
         ctx.stroke();
