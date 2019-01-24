@@ -3,11 +3,11 @@
 const canvas = document.querySelector('.main-canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d');
 
-let scale: number = 8;
+let scale: number = 10;
 
 function drawLines(x) {
     let kolor: string[] = ['green', 'purple'];
-    for (let i: number = x; i < canvas.width; i = i + x) {
+    for (let i: number = x; i < canvas.height; i = i + x) {
         if (x <= 0) {
         x = 1;
     }
