@@ -14,7 +14,7 @@ function drawSquare(x, y, color) {
 }
 
 let colorOfSteps: string = 'purple';
-let size: number = 14;
+let size: number = 201;
 
 let start: number = size;
 let numOfSteps: number = ((canvas.height - size) / start) - ((canvas.height / 3) / start);
