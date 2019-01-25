@@ -10,33 +10,43 @@ const ctx = canvas.getContext('2d');
 // and draws a line from that point to the center of the canvas.
 // Fill the canvas with lines from the edges, every 20 px, to the center.
 
-let scale: number = 20;
+let scale: number = 2;
+let hyper: string[] = ['rgb(172, 214, 238)', 'black']
 
 function centerLine (axisX: number, axisY: number) {
     for (let i: number = 0; i <= canvas.width; i = i + scale) {
+    let hyperRandom: number = Math.round(Math.random());
     ctx.beginPath();
-    let red: number = Math.floor((Math.random() * 256));
-    let green: number = Math.floor((Math.random() * 256));
-    let blue: number = Math.floor((Math.random() * 256));
-    let color: string = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
-    ctx.strokeStyle = color;
+    hyperRandom = Math.round(Math.random());
+    ctx.strokeStyle = hyper[hyperRandom];
     ctx.moveTo(axisX, axisY);
+    ctx.lineTo(canvas.width / 2, canvas.height / 2);
+    ctx.stroke();
+    ctx.beginPath();
+    hyperRandom = Math.round(Math.random());
+    ctx.strokeStyle = hyper[hyperRandom];
+    ctx.moveTo(canvas.width / 2, canvas.height / 2);
     ctx.lineTo(canvas.width - axisX, canvas.height);
     ctx.stroke();
     axisX = axisX + scale;
     } axisX = 0;
     for (let j: number = 0; j <= canvas.height; j = j + scale) {
-        let red: number = Math.floor((Math.random() * 256));
-        let green: number = Math.floor((Math.random() * 256));
-        let blue: number = Math.floor((Math.random() * 256));
-        let color: string = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+        let hyperRandom: number = Math.round(Math.random());
         ctx.beginPath();
-        ctx.strokeStyle = color;
+        hyperRandom = Math.round(Math.random());
+        ctx.strokeStyle = hyper[hyperRandom];
         ctx.moveTo(axisX, axisY);
+        ctx.lineTo(canvas.width / 2, canvas.height / 2);
+        ctx.stroke();
+        ctx.beginPath();
+        hyperRandom = Math.round(Math.random());
+        ctx.strokeStyle = hyper[hyperRandom];
+        ctx.moveTo(canvas.width / 2, canvas.height / 2);
         ctx.lineTo(canvas.width, canvas.height - axisY);
         ctx.stroke();
         axisY = axisY + scale;
     }
+    
 }
 
 let startX: number = 0;

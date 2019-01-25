@@ -15,8 +15,9 @@ function drawSquare(x: number, y: number) {
     ctx.strokeRect(x, y, 50, 50);
 }
 
-let numOfSquares: number = 3;
+let numOfSquares: number = 300000;
 
 for (let i: number = 0; i < numOfSquares; i++) {
-    drawSquare(Math.round((Math.random() * (canvas.width - 50)) + 1), (Math.round((Math.random() * (canvas.height - 50)) + 1);
+    drawSquare(Math.round((Math.random() * (canvas.width - 50)) + 1), 
+    (Math.round((Math.random() * (canvas.height - 50)) + 1);
 }
