@@ -13,9 +13,10 @@ export{};
 
 let words: string[] = ['What', 'I', 'do', 'create,', 'I', 'cannot', 'not', 'understand.'];
 
-function quoteSwap()
-
-
+function quoteSwap(element: any[]) {
+    [element[2], element[5]] = [element[5], element[2]];
+    console.log(element.join(' '));
+}
 
 console.log(quoteSwap(words));
 
