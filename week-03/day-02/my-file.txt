@@ -1,0 +1,2 @@
+I am a writeable file and I have a corresponding function in write-single-line.ts.
+Please write your name below:
