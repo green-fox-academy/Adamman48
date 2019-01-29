@@ -11,4 +11,4 @@ function divByTen(input: number) {
     }
 }
 
-divByTen(0);
+divByTen(35);
