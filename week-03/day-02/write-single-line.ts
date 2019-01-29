@@ -18,7 +18,7 @@ function writeToMyFile(fileName: string, nameToWrite: string) {
     let noFile: boolean = fs.existsSync(fileName) === false;
     try { 
         if (noFile || emptyFile) {
-            fs.appendFileSync(fileName, nameToWrite);
+            fs.writeFileSync(fileName, nameToWrite);
         }
         else if (notEmptyFile) {
         fs.appendFileSync(fileName, '\n' + nameToWrite);

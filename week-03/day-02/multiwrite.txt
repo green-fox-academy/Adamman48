@@ -1,0 +1,2 @@
+I will receive as many lines of a certain word, as write-multiple-lines.ts wants me to.
+You can see them below:
