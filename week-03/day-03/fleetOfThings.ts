@@ -10,17 +10,33 @@ import { Fleet } from "./fleet";
 
 let fleet = new Fleet();
 
-let milk: Thing = new Thing('Get milk');
-let obs: Thing = new Thing('Remove the obstacles');
-let stand: Thing = new Thing('Stand up');
-let eat: Thing = new Thing('Eat lunch');
+let milk = 'Get milk';
+let obs = 'Remove the obstacles';
+let stand = 'Stand up';
+let eat = 'Eat lunch';
 
-let isTrue1 = stand.complete();
-let isTrue2 = eat.complete();
+let arrayTransFrom: any = [milk, obs, stand, eat];
 
-fleet.add(milk);
-fleet.add(obs);
-fleet.add(stand);
-fleet.add(eat);
+/*class FuckThisShit extends Fleet {
+    
+    get GetThings() {
+        return this.things;
+    }
+}*/
 
-console.log(fleet[2][1])
+for (let i: number = 0; i < arrayTransFrom.length; i++) {
+    fleet.add(arrayTransFrom[i]);
+    }
+
+let checkStand: Thing = new Thing(stand);
+
+function changeVoid(input) {
+    if (typeof input.complete() === undefined) {
+        console.log('[X]')
+    }
+}
+
+/*    return outcomeArray;
+}*/
+
+console.log(fleet[0][0])

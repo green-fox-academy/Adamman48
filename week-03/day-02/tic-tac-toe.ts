@@ -6,16 +6,19 @@
 // Return "X", "O" or "Draw" based on the input file
 
 const fs = require('fs');
+//console.log(fs.readFileSync('win-o.txt', 'utf-8'))
+
 
 function ticTacResult(inputFile: string) {
-    let multiArray: string[][] = [];
-    fs.readFileSync(inputFile).split('\n').push(multiArray);
+    let multiArray: any[][] = [];
+    let splitterArr = fs.readFileSync(inputFile, 'utf-8').split('\r\n');
+    multiArray = splitterArr.map(value => value.split(''));
     let winner: string = '';
 
     for (let i: number = 0; i < multiArray.length; i++) {
         if (multiArray[i][0] === multiArray[i][1] && multiArray[i][1] === multiArray[i][2]) {
             winner = multiArray[i][0];
-        } else if (multiArray[0][i] === multiArray[1][i] && multiArray[1][i] === multiArray[2][i]) {
+        } else if (multiArray[0][i] === multiArray[1][i] && multiArray[0][i] === multiArray[2][i]) {
             winner = multiArray[0][i];
         } else if (multiArray[0][0] === multiArray[1][1] && multiArray[1][1] === multiArray[2][2]) {
             winner = multiArray[0][0];
