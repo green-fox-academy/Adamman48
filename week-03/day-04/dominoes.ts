@@ -17,25 +17,19 @@ function print(dominoes: Domino[]) {
     });
 }
 
-function play(dominoObj: Domino[]) {
-    let dominoArray: any[] = dominoObj[0].values;
-    let residue: any[] = []; 
-    for (let i: number = 0; i < dominoObj.length; i++) {
-        if (dominoObj[i].values[0] === dominoArray[0][1]) {
-        dominoArray.unshift(dominoObj[i])
-        } else if (dominoObj[i].values[1] === dominoArray[0][0]) {
-            dominoArray.push(dominoObj[i]);
-        } else {
-            residue.push(dominoObj[i]);
-        }
-    } return dominoArray 
-} 
-
 let dominoes = initializeDominoes();
+
 /** You have the list of Dominoes */
 /** Order them into one snake where the adjacent dominoes have the same numbers on their adjacent sides */
 /** eg: [2, 4], [4, 3], [3, 5] ... */
 
-console.log(play(dominoes))
+function play(initDomino: Domino[]) {
+    let outputDomino: any[] = [];
+    for (let i: number = 0; i < initDomino.length; i++) {
+        outputDomino.push(initDomino[i].values);
+    }   outputDomino.sort(function(leftDomino: number, rightDomino: number) {
+        return leftDomino[1] - rightDomino[0]});
+        return outputDomino;    
+}
 
-//print(dominoes);
+print(play(dominoes));

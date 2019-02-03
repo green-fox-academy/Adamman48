@@ -13,10 +13,10 @@ You can use the already created pokemon files.*/
 
 import { Pokemon } from './pokemons'
 
-let ashStash: Pokemon[] = initializePokemon();
-let wildPokemon: Pokemon = new Pokemon('Oddish', 'leaf', 'water');
+let ashStash: Pokemon[] = pokeTerminal();
+let wildPokemon: Pokemon = new Pokemon('Tangela', 'leaf', 'water');
 
-function initializePokemon(): Pokemon[] {
+function pokeTerminal(): Pokemon[] {
     return [
         new Pokemon('Venasaur', 'leaf', 'water'),
         new Pokemon('Pikachu', 'electric', 'water'),
@@ -26,7 +26,9 @@ function initializePokemon(): Pokemon[] {
     ];
 }
 for (let i: number = 0; i < ashStash.length; i++) {
-    if (ashStash[i].isEffectiveAgainst(wildPokemon)) {
-        console.log('I choose you, ' + ashStash[i].name);        
+    if (ashStash[i].superEffective(wildPokemon)) {
+        console.log(`\nA wild ${wildPokemon.name} appeared!\n
+        Let's terminate it!\n\n
+        I choose you, ${ashStash[i].name}, go for the jugular!`);        
     }
 }
