@@ -35,3 +35,5 @@ let tardigrade: Animal = new Animal();
 
 lion.play();
 console.log(lion.hunger);
+
+export{Animal};
