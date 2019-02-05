@@ -20,14 +20,17 @@ class Aircraft {
     }
 
     Refill(ammoStash: number) {
+        let remainingAmmo: number = ammoStash - (this.maxAmmo - this.currentAmmo);
+
         ammoStash >= this.maxAmmo - this.currentAmmo ? 
         this.currentAmmo = this.maxAmmo : 
         this.currentAmmo += ammoStash;
 
-        ammoStash -= this.maxAmmo - this.currentAmmo;
-        ammoStash < 0 ? ammoStash = 0 : null;
+        remainingAmmo < 0 ? 
+        remainingAmmo = 0 : 
+        remainingAmmo = remainingAmmo;
 
-        return ammoStash;
+        return remainingAmmo;
     }
 
     GetType() {
