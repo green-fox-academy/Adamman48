@@ -26,9 +26,9 @@ class Garden {
     }
 
     plant(newPlant) {
-        newPlant === Flower ? this.flowers.push(newPlant) : this.trees.push(newPlant);
-        newPlant !== Flower && newPlant !== Tree ? 
-        console.log('You can\'t plant this item. Please plant a flower or a tree!') : null;
+            newPlant instanceof Flower ? this.flowers.push(newPlant) : null;
+            newPlant instanceof Tree ? this.trees.push(newPlant) : null;
+            //console.log(`You cannot plant this item. Please plant a flower or a tree!`)
     }
 
     StateOfGarden(){
@@ -52,7 +52,7 @@ class Garden {
         this.flowers.forEach(flower => flower.waterAmount < 5 ? flower.waterAmount += amount * 0.75 : null);
         this.trees.forEach(tree => tree.waterAmount < 10 ? tree.waterAmount += amount * 0.4 : null);
 
-        this.StateOfGarden;
+        this.StateOfGarden();
     }
 }
 
@@ -61,6 +61,18 @@ let flower2: Flower = new Flower('blue', 0);
 let tree1: Tree = new Tree('purple', 0);
 let tree2: Tree = new Tree('orange', 0);
 
-let flowerSection: Garden[] = [];
-let treeSection: Tree[] = [];
+let faketree: string = 'I am fake';
 
+let garden = new Garden();
+
+garden.plant(flower1);
+garden.plant(flower2);
+garden.plant(tree1);
+garden.plant(tree2);
+garden.plant(faketree);
+
+garden.StateOfGarden();
+garden.Irrigation(40);
+garden.Irrigation(70);
+
+console.log(garden)
