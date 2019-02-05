@@ -18,19 +18,23 @@ class AircraftCarrier {
     }
 
     Fill() {
-        let allocateAmmo: number = 
+        /* let allocateAmmo: number = 
         this.aircrafts.filter(jetfighter => jetfighter.currentAmmo < jetfighter.maxAmmo)
         .reduce((accumulator: any, jetfighter) => {accumulator + (jetfighter.maxAmmo - jetfighter.currentAmmo);}, 0);
-
-        allocateAmmo > this.motherload 
-        &&
-        allocateAmmo <= this.aircrafts.filter(jetfighter => jetfighter.IsPriority() === true)
-        .reduce((accumulator: any, jetfighter) => {accumulator + (jetfighter.maxAmmo - jetfighter.currentAmmo);}, 0) 
-        ?
-        this.aircrafts.filter(jetfighter => jetfighter.IsPriority() === true)
-        .forEach(jetfighter => jetfighter.Refill(allocateAmmo)) : null;
-
-        this.motherload > 0 ?
         
+        this.motherload = this.motherload - allocateAmmo;*/
+
+        function priorityFilling (checkIt: boolean) {
+            this.aircrafts.filter(jetfighter => jetfighter.IsPriority() === checkIt)
+            .forEach(jetfighter => jetfighter.Refill(this.motherload));    
+        }
+
+        priorityFilling(true);
+
+        this.motherload > 0 ? 
+        priorityFilling(false) : 
+        console.log('No ammo left, Sir!')
     }
+
+    
 }
