@@ -36,5 +36,23 @@ class AircraftCarrier {
         console.log('No ammo left, Sir!')
     }
 
-    
+    Fight(target: AircraftCarrier) {
+        let dmgDealt: number = this.aircrafts.reduce((accumulator: any, jetfighter) =>
+        {accumulator + jetfighter.Fight();}, 0);
+
+        target.health -= dmgDealt;
+    }
+
+    GetStatus() {
+        let output: string = '';
+
+        this.health > 0 ? output =
+        `HP: ${this.health}, Aircraft count: ${this.aircrafts.length}, Ammo Storage: ${this.motherload}, Total damage: 
+        ${this.aircrafts.reduce((accumulator: any, jetfighter) => {accumulator + jetfighter.Fight();}, 0)}\n
+        Aircrafts:\n ${this.aircrafts.forEach(jetfighter => jetfighter.GetStatus())}`
+        :
+        output = `It's dead Jim... :(`
+
+        return output;
+    }
 }

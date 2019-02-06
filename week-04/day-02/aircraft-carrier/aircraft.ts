@@ -48,7 +48,7 @@ class Aircraft {
 
     GetStatus() {
         return `Type ${this.GetType}, Ammo: ${this.currentAmmo}, 
-        Base Damage: ${this.baseDamage}, All Damage: ${this.currentAmmo * this.baseDamage}`
+        Base Damage: ${this.baseDamage}, All Damage: ${this.currentAmmo * this.baseDamage}\n`
     }
 
     IsPriority() {
