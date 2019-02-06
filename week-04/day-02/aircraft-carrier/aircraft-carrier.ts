@@ -26,15 +26,18 @@ class AircraftCarrier {
         
         this.motherload = this.motherload - allocateAmmo;*/
 
-        function priorityFilling (checkIt: boolean) {
+        /*function priorityFilling (checkIt: boolean) {
             this.aircrafts.filter(jetfighter => jetfighter.IsPriority() === checkIt)
             .forEach(jetfighter => jetfighter.Refill(this.motherload));    
-        }
-
-        priorityFilling(true);
+        }*/
+        let allocateAmmo: number[] = [];
+        
+        this.aircrafts.filter(jetfighter => jetfighter.IsPriority() === true)
+        .forEach(jetfighter => jetfighter.Refill(this.motherload)); //push return value to array than reduce array
 
         this.motherload > 0 ? 
-        priorityFilling(false) : 
+        this.aircrafts.filter(jetfighter => jetfighter.IsPriority() === false)
+        .forEach(jetfighter => jetfighter.Refill(this.motherload)) : 
         console.log('No ammo left, Sir!')
     }
 
@@ -46,12 +49,11 @@ class AircraftCarrier {
     }
 
     GetStatus() {
-        let jetStatusReport: string[] = [],
+        let jetStatusReport: string[] = [];
         
-        jetStatusReport.push(this.aircrafts.forEach(jetfighter => (jetfighter.GetStatus()));
+        this.aircrafts.forEach(jetfighter => jetStatusReport.push(jetfighter.GetStatus()));
 
-        return `HP: ${this.health}, Aircraft count: ${this.aircrafts.length}, Ammo Storage: ${this.motherload}, Total damage: ${this.aircrafts.reduce((accumulator: any, jetfighter) => {accumulator + jetfighter.Fight();}, 0)}
-        Aircrafts:\n ${}`
+        return `HP: ${this.health}, Aircraft count: ${this.aircrafts.length}, Ammo Storage: ${this.motherload}, Total damage: ${this.aircrafts.reduce((accumulator: any, jetfighter) => {accumulator + jetfighter.Fight();}, 0)}\nAircrafts:\n${jetStatusReport.join(`\n`)}`;
     }
 }
 
@@ -64,7 +66,7 @@ let plane6: J10 = new J10();
 let plane7: J10 = new J10();
 let plane8: J10 = new J10();
 
-let carrier1: AircraftCarrier = new AircraftCarrier('Eviscerator', 6000, 16000);
+let carrier1: AircraftCarrier = new AircraftCarrier('Ural', 6000, 16000);
 let carrier2: AircraftCarrier = new AircraftCarrier('Manchester', 4500, 10000);
 
 carrier1.Add(plane1);
@@ -75,5 +77,7 @@ carrier1.Add(plane5);
 carrier1.Add(plane6);
 carrier1.Add(plane7);
 carrier1.Add(plane8);
+
+carrier1.Fill();
 
 console.log(carrier1.GetStatus());
