@@ -20,40 +20,39 @@ class AircraftCarrier {
     }
 
     Fill() {
-        /* let allocateAmmo: number = 
+        let allocateAmmo: number = 
         this.aircrafts.filter(jetfighter => jetfighter.currentAmmo < jetfighter.maxAmmo)
-        .reduce((accumulator: any, jetfighter) => {accumulator + (jetfighter.maxAmmo - jetfighter.currentAmmo);}, 0);
-        
-        this.motherload = this.motherload - allocateAmmo;*/
+        .reduce((accumulator: any, jetfighter) => {return accumulator + (jetfighter.maxAmmo - jetfighter.currentAmmo);}, 0);
 
-        /*function priorityFilling (checkIt: boolean) {
-            this.aircrafts.filter(jetfighter => jetfighter.IsPriority() === checkIt)
-            .forEach(jetfighter => jetfighter.Refill(this.motherload));    
-        }*/
-        let allocateAmmo: number[] = [];
-        
-        this.aircrafts.filter(jetfighter => jetfighter.IsPriority() === true)
-        .forEach(jetfighter => jetfighter.Refill(this.motherload)); //push return value to array than reduce array
+        function priorityFilling(fleet: Aircraft[], ammo: number, checker: boolean) {
+            fleet.filter(jetfighter => jetfighter.IsPriority() === checker)
+            .forEach(jetfighter => jetfighter.Refill(ammo));
+        }
+
+        priorityFilling(this.aircrafts, this.motherload, true);
 
         this.motherload > 0 ? 
-        this.aircrafts.filter(jetfighter => jetfighter.IsPriority() === false)
-        .forEach(jetfighter => jetfighter.Refill(this.motherload)) : 
-        console.log('No ammo left, Sir!')
+        priorityFilling(this.aircrafts, this.motherload, false) : 
+        console.log('No ammo left, Sir!');
+
+        this.motherload -= allocateAmmo;
     }
 
     Fight(target: AircraftCarrier) {
         let dmgDealt: number = this.aircrafts.reduce((accumulator: any, jetfighter) =>
-        {accumulator + jetfighter.Fight();}, 0);
+        {return accumulator + jetfighter.Fight();}, 0);
 
         target.health -= dmgDealt;
     }
 
     GetStatus() {
         let jetStatusReport: string[] = [];
-        
+        let potentialDamage: number = this.aircrafts.reduce((aircraft1, aircraft2) => 
+        {return aircraft1 + (aircraft2.currentAmmo * aircraft2.baseDamage)}, 0);
+
         this.aircrafts.forEach(jetfighter => jetStatusReport.push(jetfighter.GetStatus()));
 
-        return `HP: ${this.health}, Aircraft count: ${this.aircrafts.length}, Ammo Storage: ${this.motherload}, Total damage: ${this.aircrafts.reduce((accumulator: any, jetfighter) => {accumulator + jetfighter.Fight();}, 0)}\nAircrafts:\n${jetStatusReport.join(`\n`)}`;
+        return `HP: ${this.health}, Aircraft count: ${this.aircrafts.length}, Ammo Storage: ${this.motherload}, Total damage: ${potentialDamage}\nAircrafts:\n${jetStatusReport.join(`\n`)}`;
     }
 }
 
@@ -79,5 +78,7 @@ carrier1.Add(plane7);
 carrier1.Add(plane8);
 
 carrier1.Fill();
+carrier1.Fight(carrier2);
 
 console.log(carrier1.GetStatus());
+console.log(carrier2.GetStatus());
