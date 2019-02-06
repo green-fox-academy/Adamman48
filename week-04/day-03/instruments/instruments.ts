@@ -32,7 +32,7 @@ class ElectricGuitar extends StringedInstrument{
     }
 
     play(): string {
-        return `${this.name} a ${this.numberOfStrings}-stringed instrument that goes ${this.sound}`;
+        return `${this.name} a ${this.numberOfStrings}-stringed instrument that goes ${this.sound()}`;
     }
 }
 
@@ -47,7 +47,7 @@ class BassGuitar extends StringedInstrument{
     }
 
     play(): string {
-        return `${this.name} a ${this.numberOfStrings}-stringed instrument that goes ${this.sound}`;
+        return `${this.name} a ${this.numberOfStrings}-stringed instrument that goes ${this.sound()}`;
     }
 }
 
@@ -62,7 +62,7 @@ class Violin extends StringedInstrument{
     }
 
     play(): string {
-        return `${this.name} a ${this.numberOfStrings}-stringed instrument that goes ${this.sound}`;
+        return `${this.name} a ${this.numberOfStrings}-stringed instrument that goes ${this.sound()}`;
     }
 }
 
