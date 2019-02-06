@@ -15,7 +15,7 @@ class AircraftCarrier {
         this.health = hp > 15000 ? this.health = 15000 : this.health = hp;
     }
 
-    Add(jet: Aircraft) {
+    Add(jet: Aircraft): void {
         this.aircrafts.push(jet);
     }
 
@@ -46,19 +46,34 @@ class AircraftCarrier {
     }
 
     GetStatus() {
-        let output: string = '';
+        let jetStatusReport: string[] = [],
+        
+        jetStatusReport.push(this.aircrafts.forEach(jetfighter => (jetfighter.GetStatus()));
 
-        this.health > 0 ? output =
-        `HP: ${this.health}, Aircraft count: ${this.aircrafts.length}, Ammo Storage: ${this.motherload}, Total damage: 
-        ${this.aircrafts.reduce((accumulator: any, jetfighter) => {accumulator + jetfighter.Fight();}, 0)}\n
-        Aircrafts:\n ${this.aircrafts.forEach(jetfighter => jetfighter.GetStatus())}`
-        :
-        output = `It's dead Jim... :(`
-
-        return output;
+        return `HP: ${this.health}, Aircraft count: ${this.aircrafts.length}, Ammo Storage: ${this.motherload}, Total damage: ${this.aircrafts.reduce((accumulator: any, jetfighter) => {accumulator + jetfighter.Fight();}, 0)}
+        Aircrafts:\n ${}`
     }
 }
 
-let plane1: SU35 = new SU35()
+let plane1: SU35 = new SU35();
+let plane2: SU35 = new SU35();
+let plane3: SU35 = new SU35();
+let plane4: J10 = new J10();
+let plane5: J10 = new J10();
+let plane6: J10 = new J10();
+let plane7: J10 = new J10();
+let plane8: J10 = new J10();
 
-console.log(plane1.GetStatus())
+let carrier1: AircraftCarrier = new AircraftCarrier('Eviscerator', 6000, 16000);
+let carrier2: AircraftCarrier = new AircraftCarrier('Manchester', 4500, 10000);
+
+carrier1.Add(plane1);
+carrier1.Add(plane2);
+carrier1.Add(plane3);
+carrier1.Add(plane4);
+carrier1.Add(plane5);
+carrier1.Add(plane6);
+carrier1.Add(plane7);
+carrier1.Add(plane8);
+
+console.log(carrier1.GetStatus());

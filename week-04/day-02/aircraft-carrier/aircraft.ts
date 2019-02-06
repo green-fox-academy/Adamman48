@@ -1,6 +1,6 @@
 'use strict';
 
-class Aircraft {
+ abstract class Aircraft {
     maxAmmo: number;
     currentAmmo: number;
     baseDamage: number;
@@ -11,7 +11,7 @@ class Aircraft {
         this.baseDamage = dmg;
     }
 
-    Fight() {
+    Fight(): number {
         let damageDealt: number = this.currentAmmo * this.baseDamage;
 
         this.currentAmmo = 0;
@@ -19,7 +19,7 @@ class Aircraft {
         return damageDealt;
     }
 
-    Refill(ammoStash: number) {
+    Refill(ammoStash: number): number {
         let remainingAmmo: number = ammoStash - (this.maxAmmo - this.currentAmmo);
 
         ammoStash >= this.maxAmmo - this.currentAmmo ? 
@@ -33,45 +33,42 @@ class Aircraft {
         return remainingAmmo;
     }
 
-    GetType() {
-        let type: string = '';
-
-        Aircraft instanceof SU35 ?
-        type = 'Sukhoi SU-35' : null;
-
-        Aircraft instanceof J10 ?
-        type = 'Chengdu J-10' : null;
-
-        return type;
-
-    }
+    abstract GetType();
 
     GetStatus() {
-        return `Type ${this.GetType}, Ammo: ${this.currentAmmo}, 
-        Base Damage: ${this.baseDamage}, All Damage: ${this.currentAmmo * this.baseDamage}\n`
+        return `Type ${this.GetType()}, Ammo: ${this.currentAmmo}, Base Damage: ${this.baseDamage}, All Damage: ${this.currentAmmo * this.baseDamage}`
     }
 
-    IsPriority() {
-        let checker: boolean = undefined;
-
-        Aircraft instanceof SU35 ? checker = true : null;
-
-        Aircraft instanceof J10 ? checker = false : null;
-        
-        return checker;
-    }
-
+    abstract IsPriority();
 }
+
 
 class SU35 extends Aircraft {
     constructor(a: number = 12, dmg: number = 50) {
         super(a, dmg);
     }
+
+    GetType():string {
+        return 'Sukhoi SU-35';
+    }
+
+    IsPriority():boolean {
+        return true;
+    }
 }
+
 
 class J10 extends Aircraft{
     constructor(a: number = 8, dmg: number = 30) {
         super(a, dmg);
+    }
+
+    GetType(): string {
+        return 'Chengdu J-10';
+    }
+
+    IsPriority():boolean {
+        return false;
     }
 }
 
