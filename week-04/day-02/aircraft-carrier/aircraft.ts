@@ -64,14 +64,14 @@ class Aircraft {
 }
 
 class SU35 extends Aircraft {
-    constructor(a: number, dmg: number) {
-        super(a = 12, dmg = 50);
+    constructor(a: number = 12, dmg: number = 50) {
+        super(a, dmg);
     }
 }
 
 class J10 extends Aircraft{
-    constructor(a: number, dmg: number) {
-        super(a = 8, dmg = 30);
+    constructor(a: number = 8, dmg: number = 30) {
+        super(a, dmg);
     }
 }
 

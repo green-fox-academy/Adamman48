@@ -3,11 +3,13 @@
 import {Aircraft, SU35, J10} from './aircraft'
 
 class AircraftCarrier {
+    name: string;
     aircrafts: Aircraft[];
     motherload: number;
     health: number;
 
-    constructor(ml: number, hp: number) {
+    constructor(n: string, ml: number, hp: number) {
+        this.name = n;
         this.aircrafts = [];
         this.motherload = ml > 2500 ? this.motherload = 2500 : this.motherload = ml;
         this.health = hp > 15000 ? this.health = 15000 : this.health = hp;
@@ -56,3 +58,7 @@ class AircraftCarrier {
         return output;
     }
 }
+
+let plane1: SU35 = new SU35()
+
+console.log(plane1.GetStatus())
