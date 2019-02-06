@@ -22,7 +22,8 @@ class AircraftCarrier {
     Fill() {
         let allocateAmmo: number = 
         this.aircrafts.filter(jetfighter => jetfighter.currentAmmo < jetfighter.maxAmmo)
-        .reduce((accumulator: any, jetfighter) => {return accumulator + (jetfighter.maxAmmo - jetfighter.currentAmmo);}, 0);
+        .reduce((accumulator: any, jetfighter) => 
+        {return accumulator + (jetfighter.maxAmmo - jetfighter.currentAmmo);}, 0);
 
         function priorityFilling(fleet: Aircraft[], ammo: number, checker: boolean) {
             fleet.filter(jetfighter => jetfighter.IsPriority() === checker)
@@ -39,7 +40,8 @@ class AircraftCarrier {
     }
 
     Fight(target: AircraftCarrier) {
-        let dmgDealt: number = this.aircrafts.reduce((accumulator: any, jetfighter) =>
+        let dmgDealt: number = 
+        this.aircrafts.reduce((accumulator: any, jetfighter) =>
         {return accumulator + jetfighter.Fight();}, 0);
 
         target.health -= dmgDealt;
@@ -52,7 +54,7 @@ class AircraftCarrier {
 
         this.aircrafts.forEach(jetfighter => jetStatusReport.push(jetfighter.GetStatus()));
 
-        return `HP: ${this.health}, Aircraft count: ${this.aircrafts.length}, Ammo Storage: ${this.motherload}, Total damage: ${potentialDamage}\nAircrafts:\n${jetStatusReport.join(`\n`)}`;
+        return `Name: ${this.name} HP: ${this.health}, Aircraft count: ${this.aircrafts.length}, Ammo Storage: ${this.motherload}, Total damage: ${potentialDamage}\nAircrafts:\n${jetStatusReport.join(`\n`)}`;
     }
 }
 
