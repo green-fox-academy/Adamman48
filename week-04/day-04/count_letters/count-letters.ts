@@ -5,19 +5,18 @@ Create a test for that. */
 
 function letterCounter(inputString: string) {
     let dictionary: {[letter: string]: number} = {};
+    let regexpFilterArray:RegExp [] = [/\s*/gm, /\_*/gm, /\d*/gm, /\W*/gm];
 
-    function filter(whitespace: string, underscore: string, digits: string, specialChars: string): string {
-        return [whitespace, underscore, digits, specialChars].join('').replace(/./, '');
+    for (let i: number = 0; i < regexpFilterArray.length; i++) {
+        inputString = inputString.replace(regexpFilterArray[i], '');
     }
-
-let regexp:RegExp [] = [/\s/gim, /\_/gim, /\d*/gim, /^\w/gim];
-
-    inputString.replace(regexp[0], filter).split('')
+    
+    inputString.toLowerCase().split('')
     .forEach((value, index, array) => dictionary[value] = array.filter(v => v === value).length);
 
     return dictionary;
 }
 
-console.log(letterCounter('adam PHA $&_-9329273'))
+console.log(letterCounter('Adam PHA $&_-9329273'));
 
 export {letterCounter};
