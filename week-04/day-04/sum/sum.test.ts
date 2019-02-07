@@ -40,3 +40,13 @@ test('multiple elements in array summarize tester', t => {
     t.equal(actual, expected);
     t.end();
 });
+
+test('testing "null" element in array summarizing method', t => {
+    const testArray = new Summarize([null]);
+
+    let actual: number = testArray.sum();
+    let expected: number = 0;
+
+    t.equal(actual, expected);
+    t.end();
+});
