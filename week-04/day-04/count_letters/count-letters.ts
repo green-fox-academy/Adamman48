@@ -6,12 +6,18 @@ Create a test for that. */
 function letterCounter(inputString: string) {
     let dictionary: {[letter: string]: number} = {};
 
-    inputString.replace(/\s/g, '').split('')
+    function filter(whitespace: string, underscore: string, digits: string, specialChars: string): string {
+        return [whitespace, underscore, digits, specialChars].join('').replace(/./, '');
+    }
+
+let regexp:RegExp [] = [/\s/gim, /\_/gim, /\d*/gim, /^\w/gim];
+
+    inputString.replace(regexp[0], filter).split('')
     .forEach((value, index, array) => dictionary[value] = array.filter(v => v === value).length);
 
     return dictionary;
 }
 
-console.log(letterCounter('adam'))
+console.log(letterCounter('adam PHA $&_-9329273'))
 
 export {letterCounter};
