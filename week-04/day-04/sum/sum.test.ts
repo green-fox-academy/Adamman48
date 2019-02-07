@@ -10,3 +10,14 @@ test('summarize elements of array', t => {
     t.equal(actual, expected);
     t.end();
 });
+
+test('empty array summarize tester', t => {
+    const testArray = new Summarize([]);
+
+    let actual: number = testArray.sum();
+    let expected: number = 0;
+
+    t.equal(actual, expected);
+    t.end();
+});
+
