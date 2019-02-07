@@ -21,3 +21,22 @@ test('empty array summarize tester', t => {
     t.end();
 });
 
+test('single element summarize tester', t => {
+    const testArray = new Summarize([48]);
+
+    let actual: number = testArray.sum();
+    let expected: number = 48;
+
+    t.equal(actual, expected);
+    t.end();
+})
+
+test('multiple elements in array summarize tester', t => {
+    const testArray = new Summarize([5, 5, 6]);
+
+    let actual: number = testArray.sum();
+    let expected: number = 16;
+
+    t.equal(actual, expected);
+    t.end();
+});
