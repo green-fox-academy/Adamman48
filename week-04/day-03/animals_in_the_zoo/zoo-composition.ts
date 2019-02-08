@@ -1,13 +1,12 @@
 'use strict';
 
 const Breeding = (b: string) => {
-    let breedingMethod: string = b;
     let offsprings: 0;
 
     return {
         breed(): string {
             offsprings++;
-            return breedingMethod;
+            return b;
         },
         checkOffsprings(): string {
             return `I have ${offsprings} offsprings.`;
@@ -16,12 +15,11 @@ const Breeding = (b: string) => {
 }
 
 const Physiology = (sC: string) => {
-    let skinCover: string = sC;
     let belly: number = 100;
 
     return {
         coveredIn(): string {
-            return skinCover;
+            return sC;
         },
         feed(): void {
             belly += 10;
@@ -36,11 +34,10 @@ const Physiology = (sC: string) => {
 }
 
 const TypeName = (tn: string) => {
-    let typeName: string = tn;
 
     return {
         getName(): string {
-            return typeName;
+            return tn;
         }
     }
 }
@@ -51,7 +48,7 @@ const Reptile = (nameOfType: string) => {
     let typeName = TypeName(nameOfType);
 
     return {
-        getName(){},                                        //Can I make these repeated 'returns' substitute somehow?
+        typename.getName(){},             //Can I make these repeated 'returns' substitute somehow?
         breed(){},
         hunger(){},
         coveredIn(){},

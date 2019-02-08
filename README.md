@@ -4,9 +4,10 @@ My name's Adam and I am a proud member of the Megalotis Cohort's
 Astral team. [Click here to reach my team's -Astral- GitHub 
 syllabus](https://github.com/green-fox-academy/astral-syllabus)
 
+A quick link for my [to-do app](https://github.com/Adamman48/todo-app).
+
 You may also find my learning projects and workshop materials 
-here, 
-spiced with some Star Wars geekishness.
+here.
 
 
 
