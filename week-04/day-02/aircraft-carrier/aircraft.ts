@@ -26,7 +26,7 @@
         this.currentAmmo = this.maxAmmo : 
         this.currentAmmo += ammoStash;
 
-        remainingAmmo < 0 ? remainingAmmo = 0 : remainingAmmo = remainingAmmo;
+        remainingAmmo < 0 ? remainingAmmo = 0 : null;
 
         return remainingAmmo;
     }
