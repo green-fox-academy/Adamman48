@@ -6,7 +6,7 @@ let fs = require ('fs');
 
 let source: string = 'lottery.csv';
 
-function mostCommonFinder(inputSource: string): Object {
+function mostCommonFinder(inputSource: string): string {
   let textToArray: string[] = fs.readFileSync(inputSource, 'utf-8').split('Ft')
   let counter: {} = {};
   textToArray = textToArray.filter((v, index) => 
@@ -17,8 +17,8 @@ function mostCommonFinder(inputSource: string): Object {
 
   textToArray.forEach((element, i, array) => {counter[element] = array.filter(value => value === element).length});
   
-  return counter;
+  return `The most common lotto number is: ${Number(Object.keys(counter).sort((a, b) => 
+    {return counter[b] - counter[a]}).splice(0, 1))}`;
 }
 
-//mostCommonFinder(source)
-console.log(mostCommonFinder(source))
+console.log(mostCommonFinder(source));
