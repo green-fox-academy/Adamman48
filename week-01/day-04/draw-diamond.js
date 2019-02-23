@@ -13,17 +13,42 @@
 //
 // The diamond should have as many lines as lineCount is */
 
-let lineCount = 50;
-lineCount % 2 === 0 ? (console.log(`${lineCount} is not an odd number, line count changed to ${lineCount + 1} automatically.`) , lineCount++) : null;
-let spacing = Math.floor(lineCount / 2);
-let starCountAfterTurn = lineCount - 2;
+let lineCount = 7;
 
-for (let i = 1; i < lineCount * 2; i += 2) {
-  let whitespace = ' ';
-  let star = '*';
+function drawTriangleOddNum (lines) {
+  lineCount % 2 === 0 ? 
+    (console.log
+      (`${lineCount} is not an odd number, line count changed to ${lineCount + 1} automatically.`) , lineCount++) 
+    : null;
+  let spacing = Math.floor(lineCount / 2);
+  let starCountAfterTurn = lineCount - 2;
 
-  console.log(whitespace.repeat(spacing).concat(star.repeat(i > lineCount ? starCountAfterTurn : i)));
+  for (let i = 1; i < lineCount * 2; i += 2) {
+    let whitespace = ' ';
+    let star = '*';
+
+    console.log(whitespace.repeat(spacing).concat
+      (star.repeat(i > lineCount ? starCountAfterTurn : i)));
 
   i < lineCount ? spacing-- : spacing++;
   i > lineCount ? starCountAfterTurn -= 2 : null;
+  }
 }
+
+function drawTriangleAllNum (lines) {
+  let spacing = Math.floor(lineCount / 2);
+  let starCountAfterTurn = lineCount - 1;
+
+  for (let i = 1; i < lineCount * 2; i += 2) {
+    let whitespace = ' ';
+    let star = '*';
+
+    console.log(whitespace.repeat(i >= lineCount ? spacing + 1 : spacing).concat
+      (star.repeat(i > lineCount ? starCountAfterTurn : i)));
+
+  i < lineCount ? spacing-- : spacing++;
+  i > lineCount ? starCountAfterTurn -= 2 : null;
+  }
+}
+
+drawTriangleAllNum(lineCount);
