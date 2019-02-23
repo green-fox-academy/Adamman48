@@ -22,7 +22,8 @@ function drawSquareDiagonal(lines) {
   for (let i = 0; i < lines; i++) {
     i === 0 || i === lines - 1 ?
       line = lining.repeat(lines) :
-        line = lining.concat(whitespace.repeat(i - 1)).concat(lining).concat(whitespace.repeat(lines - i - 2)).concat(lining);
+        line = lining.concat(whitespace.repeat(i - 1))
+          .concat(lining).concat(whitespace.repeat(lines - i - 2)).concat(lining);
     console.log(line);
   }
 }

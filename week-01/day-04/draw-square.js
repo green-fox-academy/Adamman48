@@ -19,10 +19,10 @@ function drawSquare(lines) {
   let whitespace = ' ';
   let line = '';
 
-  for (let i = 1; i <= lineCount; i++) {
-    i === 1 || i === lineCount ?
-      line = lining.repeat(lineCount) :
-        line = lining.concat(whitespace.repeat(lineCount - 2)).concat(lining);
+  for (let i = 1; i <= lines; i++) {
+    i === 1 || i === lines ?
+      line = lining.repeat(lines) :
+        line = lining.concat(whitespace.repeat(lines - 2)).concat(lining);
     console.log(line);
   }
 }

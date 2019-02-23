@@ -16,39 +16,39 @@
 let lineCount = 8;
 
 function drawTriangleOddNum (lines) {
-  lineCount % 2 === 0 ? 
+  lines % 2 === 0 ? 
     (console.log
-      (`${lineCount} is not an odd number, line count changed to ${lineCount + 1} automatically.`) , lineCount++) 
+      (`${lines} is not an odd number, line count changed to ${lines - 1} automatically.`) , lines++) 
     : null;
-  let spacing = Math.floor(lineCount / 2);
-  let starCountAfterTurn = lineCount - 2;
+  let spacing = Math.floor(lines / 2);
+  let starCountAfterTurn = lines - 2;
 
-  for (let i = 1; i < lineCount * 2; i += 2) {
+  for (let i = 1; i < lines * 2; i += 2) {
     let whitespace = ' ';
     let star = '*';
 
     console.log(whitespace.repeat(spacing).concat
-      (star.repeat(i > lineCount ? starCountAfterTurn : i)));
+      (star.repeat(i > lines ? starCountAfterTurn : i)));
 
-  i < lineCount ? spacing-- : spacing++;
-  i > lineCount ? starCountAfterTurn -= 2 : null;
+  i < lines ? spacing-- : spacing++;
+  i > lines ? starCountAfterTurn -= 2 : null;
   }
 }
 
 function drawTriangleAllNum (lines) {
-  let spacing = Math.floor(lineCount / 2);
-  let starCountAfterTurn = lineCount % 2 === 0 ? lineCount - 1 : lineCount - 2;
+  let spacing = Math.floor(lines / 2);
+  let starCountAfterTurn = lines % 2 === 0 ? lines - 1 : lines - 2;
 
-  for (let i = 1; i < lineCount * 2; i += 2) {
+  for (let i = 1; i < lines * 2; i += 2) {
     let whitespace = ' ';
     let star = '*';
 
-    console.log(whitespace.repeat(lineCount % 2 === 0 ? 
-        (i >= lineCount ? spacing + 1 : spacing) : spacing).concat
-      (star.repeat(i > lineCount ? starCountAfterTurn : i)));
+    console.log(whitespace.repeat(lines % 2 === 0 ? 
+        (i >= lines ? spacing + 1 : spacing) : spacing).concat
+      (star.repeat(i > lines ? starCountAfterTurn : i)));
 
-  i < lineCount ? spacing-- : spacing++;
-  i > lineCount ? starCountAfterTurn -= 2 : null;
+  i < lines ? spacing-- : spacing++;
+  i > lines ? starCountAfterTurn -= 2 : null;
   }
 }
 
