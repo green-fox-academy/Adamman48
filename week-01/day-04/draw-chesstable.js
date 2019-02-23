@@ -16,6 +16,8 @@ function drawChesstable () {
   let filled = '[@]'
   let empty = '[ ]'
   let line = '';
+  
+  console.log('');
 
   for (let i = 1; i <= 8; i++) {
     let block = '';
