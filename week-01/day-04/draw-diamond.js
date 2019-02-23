@@ -13,7 +13,8 @@
 //
 // The diamond should have as many lines as lineCount is */
 
-let lineCount = 8;
+let lineCount = 50;
+lineCount % 2 === 0 ? (console.log(`${lineCount} is not an odd number, line count changed to ${lineCount + 1} automatically.`) , lineCount++) : null;
 let spacing = Math.floor(lineCount / 2);
 let starCountAfterTurn = lineCount - 2;
 
