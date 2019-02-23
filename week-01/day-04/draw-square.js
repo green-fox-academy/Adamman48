@@ -12,7 +12,7 @@
 // The square should have as many lines as lineCount is
 // .repeat is not present in typescript, using js format then
 
-let lineCount = 6;
+let lineCount = 17;
 
 function drawSquare(lines) {
   let lining = '%';
