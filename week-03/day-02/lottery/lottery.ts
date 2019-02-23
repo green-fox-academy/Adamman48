@@ -1,7 +1,5 @@
 'use strict';
 
-import { stringify } from "querystring";
-
 let fs = require ('fs');
 
 let source: string = 'lottery.csv';
