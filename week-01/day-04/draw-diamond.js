@@ -13,7 +13,7 @@
 //
 // The diamond should have as many lines as lineCount is */
 
-let lineCount = 7;
+let lineCount = 8;
 
 function drawTriangleOddNum (lines) {
   lineCount % 2 === 0 ? 
@@ -37,13 +37,14 @@ function drawTriangleOddNum (lines) {
 
 function drawTriangleAllNum (lines) {
   let spacing = Math.floor(lineCount / 2);
-  let starCountAfterTurn = lineCount - 1;
+  let starCountAfterTurn = lineCount % 2 === 0 ? lineCount - 1 : lineCount - 2;
 
   for (let i = 1; i < lineCount * 2; i += 2) {
     let whitespace = ' ';
     let star = '*';
 
-    console.log(whitespace.repeat(i >= lineCount ? spacing + 1 : spacing).concat
+    console.log(whitespace.repeat(lineCount % 2 === 0 ? 
+        (i >= lineCount ? spacing + 1 : spacing) : spacing).concat
       (star.repeat(i > lineCount ? starCountAfterTurn : i)));
 
   i < lineCount ? spacing-- : spacing++;
