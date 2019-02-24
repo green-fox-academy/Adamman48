@@ -12,7 +12,7 @@
 //
 // * size should depend on a variable
 
-function matrixInit (rowsAndColumns: number): number[][] {
+function matrixInit (rowsAndColumns: number): void {
   let outputMatrix: number[][] = [];
   let replaceThis: number = 1;
 
@@ -24,23 +24,9 @@ function matrixInit (rowsAndColumns: number): number[][] {
     }
     fillerArray[fillerArray.length - replaceThis] = 1;
     outputMatrix.push(fillerArray);
+    console.log(fillerArray);
     replaceThis++;
   }
-  return outputMatrix;
 }
 
-
-
-let outputMatrix: number[][] = [];
-  let replaceThis: number = 1;
-
-  for (let i: number = 0; i < rowsAndColumns; i++) {
-    let fillerArray: number[] = [];
-
-    for (let i: number = 0; i <rowsAndColumns; i++) {
-      fillerArray.push(0);
-    }
-    fillerArray[fillerArray.length - replaceThis] = 1;
-    outputMatrix.push(fillerArray);
-    replaceThis++;
-  }
+matrixInit(10);
