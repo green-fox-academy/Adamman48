@@ -8,10 +8,14 @@
 // -  Print the elements of the reversed `numList`
 
 let numList: number[] = [3, 4, 5, 6, 7];
-let outputArray: number[] = [];
 
-for (let i: number = 1; i <= numList.length; i++) {
-	outputArray.push(numList[numList.length - i])
+function reverseArray(inputArray: number[]): number[] {
+	let outputArray: number[] = [];
+
+	for (let i: number = 1; i <= inputArray.length; i++) {
+		outputArray.push(inputArray[inputArray.length - i])
+	}
+	return outputArray;
 }
 
-console.log(outputArray);
+console.log(reverseArray(numList));
