@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  background: rgb(255, 255, 51);
+  margin: 0;
+  padding: 0;
+  height: 300px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item {
+  background: rgb(207, 0, 207);
+  width: 100px;
+  height: 33%;
+  list-style: none;
+}
