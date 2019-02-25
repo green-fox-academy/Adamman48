@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  background: rgb(252, 252, 54);
+  width: 100%;
+  height: 300px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.item {
+  background: rgb(189, 2, 189);
+  width: 100px;
+  height: 33%;
+  margin: 0;
+  position: relative;
+  top: 100px;
+  margin-right: 10px;
+  list-style: none;
+}
