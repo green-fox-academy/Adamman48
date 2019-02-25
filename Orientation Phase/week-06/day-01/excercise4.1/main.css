@@ -1,38 +1,66 @@
 body {
-  width: 1000px;
-  margin: 20px;
-  height: 100%;
+  margin: 0;
   padding: 0;
+}
+
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px auto;
+  padding: 0;
+  width: 1000px;
+  height: 100vh;
 }
 
 header {
   display: flex;
-  background: rgb(194, 0, 194);
-  width: 100%;
-  height: 50px;
+  justify-content: start;
   align-items: center;
   margin: 0;
   padding: 0;
+  background: rgb(153, 0, 153);
+  width: 100%;
+  height: 10%;
 }
 
 nav {
   display: flex;
   list-style: none;
+  margin: 0;
+  padding: 0;
   width: 40%;
   height: 60%;
 }
 
 .item {
-  background: rgb(0, 231, 231);
-  width: 33%;
+  background: rgb(0, 174, 255);
+  margin-left: 15px;
+  width: 30px;
   height: 100%;
-  margin-left: 10px;
 }
-/* WHYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY????????????????????????
+
 .one {
+  flex-grow: 3;
+}
+
+.two {
   flex-grow: 1;
-}*/
+}
+
+.three {
+  flex-grow: 2;
+}
 
 .main-content {
-  
+  background: rgb(250, 250, 70);
+  width: 70%;
+  height: 90%;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar {
+  background: rgb(0, 204, 0);
+  width: 30%;
+  height: 90%;
 }
