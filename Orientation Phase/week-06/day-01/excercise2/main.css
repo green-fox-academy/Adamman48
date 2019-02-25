@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 600px;
+  height: 600px;
+}
+
+.item {
+  width: 100%;
+  height: 100%;
+}
+
+.yellow {
+  background: rgb(252, 252, 57);
+  height: 300px;
+  width: 800px;
+}
+
+.purple {
+  background: rgb(194, 7, 194);
+  position: absolute;
+  top: 100px;
+  left: 350px;
+  width: 100px;
+  height: 100px;
+}
