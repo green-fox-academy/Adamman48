@@ -1,0 +1,34 @@
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.container {
+  display: flex;
+  width: 600px;
+  height: 600px;
+  flex-direction: column;
+}
+
+.item {
+  height: 25%;
+  width: 100%;
+}
+
+.green {
+  background: rgb(20, 238, 20);
+  order: 1;
+}
+
+.yellow {
+  background: rgb(255, 255, 73);
+  flex-grow: 1;
+  order: 3;
+}
+
+.purple {
+  background: rgb(197, 9, 197);
+  order: 2;
+}
+
