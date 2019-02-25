@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.container {
+  display: flex;
+}
+
+.item {
+  height: 200px;
+  width: 200px;
+}
+
+.green {
+  background: rgb(20, 238, 20);
+}
+
+.yellow {
+  background: rgb(255, 255, 73);
+}
+
+.purple {
+  background: rgb(197, 9, 197);
+}
+
