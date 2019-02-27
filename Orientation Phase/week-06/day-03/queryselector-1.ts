@@ -12,3 +12,24 @@ alert them one by one.
 in the 'noBusiness' variable.
 console.log each of them. */
 
+let king: HTMLElement = document.getElementById('b325');
+
+console.log(king.textContent);
+
+let businessLamp: NodeList = document.querySelectorAll('.asteroid big');
+
+for (let i: number = 0; i < businessLamp.length; i++) {
+  console.log(businessLamp[i].textContent);
+};
+
+let conceitedKing: NodeList = document.querySelectorAll('section');
+
+for (let i: number = 0; i < conceitedKing.length; i++) {
+  alert(conceitedKing[i].textContent);
+};
+
+let noBusiness: NodeList = document.querySelectorAll('div');
+
+for (let i: number = 0; i < noBusiness.length; i++) {
+  console.log(noBusiness[i].textContent);
+};
