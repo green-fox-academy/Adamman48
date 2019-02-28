@@ -12,5 +12,9 @@ app.listen(PORT, () => {
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-  
+  let data: Object = req.query;
+  Object.keys(data).length === 0 ?
+  data = {name: 'Guest'} :
+  null;
+  res.render('home', data);
 });
