@@ -11,22 +11,23 @@ app.listen(PORT, () => {
 
 app.set('view engine', 'ejs');
 
-const todos: string[] = [
-  'buy Cocaine...on iTunes',
-  'listen to Cocaine',
-  'bed',
-];
-
-function addList(inputArray: string[]) {
-  let listParentNode: HTMLElement = document.querySelector('ul');
+function addList() {
+  const todos: string[] = [
+    'buy Cocaine...on iTunes',
+    'listen to Cocaine',
+    'bed',
+  ];
+  let sumArray: string[] = [];
+  let output: string = '';
   
-  for (let i: number = 0; i < inputArray.length; i++) {
-    let newListElement: HTMLElement = document.createElement('li');
-    newListElement.textContent = `${inputArray[i]}`;
-    listParentNode.appendChild(newListElement);
-  }
+  todos.forEach(value => sumArray.push(`\n<li>${value}</li>`));
+
+  output = sumArray.join('');
+  return output; 
 }
 
 app.get('/', (req, res) => {
-  res.render('home', addList(todos));
-})
+  res.render('home', {
+    lister: addList(),
+  })
+});
