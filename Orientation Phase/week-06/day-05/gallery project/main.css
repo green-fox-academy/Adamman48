@@ -1,12 +1,14 @@
 <style>
 
 body {
-  margin: 0;
+  margin: 0px;
   padding: 0;
+  border: 0;
   display: flex;
-  flex-wrap: wrap;
   width: auto;
-  height: 100vh;
+  height: auto;
+  align-content: center;
+  justify-content: center;
 }
 
 header {
@@ -17,29 +19,71 @@ header {
   align-items: center;
   justify-content: center;
   display: flex;
-  padding: 10% 20% 5% 20%;
+  padding: 5% 10% 2% 10%;
   margin: 0;
-  width: 60%;
-  height: 50%;
+  width: auto;
+  height: auto;
 }
 
-.preview .description {
-  display: flex;
-  background: rgb(61, 61, 61);
-  opacity: 0.1;
-  width: 100%;
-  height: 20%;
-
+#current-image {
+  border: 2px solid black;
+  max-width: 100%;
+  height: auto;
 }
 
 #next-image {
   transform: rotate(180deg);
 }
 
+.preview button {
+  padding: 20% 1% 20% 1%;
+  margin: 0;
+  align-items: center;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  background: rgb(0, 0, 0);
+  opacity: 0.1;
+  width: 80%;
+  height: 10%;
+  margin: 0;
+  padding: 5%;
+  position: relative;
+  left: 20%;
+  top: 42%;
+  z-index: 1;
+}
+
+.description h3 {
+  margin: 0;
+  padding: 2%;
+}
+
+.description p {
+  margin: 0;
+  padding: 2%;
+}
+
 .thumbnails {
+  list-style: none;
+  display: flex;
   align-items: center;
   justify-content: center;
-  display: flex;
+  padding: 0 15% 2% 15%;
+  margin: 0;
+  width: auto;
+}
+
+.thumbnails li {
+  margin: 0;
+  padding: 0;
+}
+
+.thumbnails img {
+  width: 80%;
+  border: 1px solid black;
 }
 
 footer {
