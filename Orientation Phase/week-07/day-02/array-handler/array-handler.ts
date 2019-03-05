@@ -12,6 +12,10 @@ app.post('/arrays', (req, res) => {
   let inputArray: number[] = req.body.numbers;
   let output: {[result: string]: any} = {};
 
+  inputMethod === undefined || inputArray === undefined || inputArray.length === 0 ?
+    output = {
+      error: 'Please provide what to do with the numbers!'
+    } :
   inputMethod === 'sum' ?
     output.result = Number(inputArray.reduce((accumulator, currentValue) => 
       {return accumulator + currentValue})) :
@@ -20,10 +24,6 @@ app.post('/arrays', (req, res) => {
       {return accumulator * currentValue})) :
   inputMethod === 'double' ?
     output.result = inputArray.map(value => value * 2) :
-  inputMethod === undefined || inputArray === undefined || inputArray.length === 0 ?
-    output = {
-      error: 'Please provide what to do with the numbers!'
-    } :
   null;
 
   res.send(output);    
