@@ -51,7 +51,14 @@ app.get('/greeter', (req, res) => {
   res.send(output);
 });
 
+app.get('/appenda/:appendable', (req, res) => {
+  let input: string = req.params.appendable;
+  let output: Object = {
+    appended: `${input}a`,
+  };
 
+  res.send(output);
+})
 
 app.listen(PORT, () => {
   console.log(`I'm running!`);

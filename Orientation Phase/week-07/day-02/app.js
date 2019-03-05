@@ -41,6 +41,13 @@ app.get('/greeter', function (req, res) {
                 };
     res.send(output);
 });
+app.get('/appenda/:appendable', function (req, res) {
+    var input = req.params.appendable;
+    var output = {
+        appended: input + "a"
+    };
+    res.send(output);
+});
 app.listen(PORT, function () {
     console.log("I'm running!");
 });
