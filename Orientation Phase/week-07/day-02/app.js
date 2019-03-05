@@ -20,6 +20,27 @@ app.get('/doubling', function (req, res) {
         };
     res.send(output);
 });
+app.get('/greeter', function (req, res) {
+    var inputName = req.query.name;
+    var inputTitle = req.query.title;
+    var output = {};
+    inputName === undefined && inputTitle === undefined ?
+        output = {
+            error: 'Please provide a name and a title!'
+        } :
+        inputName === undefined ?
+            output = {
+                error: "Please provide a name!"
+            } :
+            inputTitle === undefined ?
+                output = {
+                    error: "Please provide a title!"
+                } :
+                output = {
+                    welcome_message: "Oh, hi there " + inputName + ", my dear " + inputTitle + "!"
+                };
+    res.send(output);
+});
 app.listen(PORT, function () {
     console.log("I'm running!");
 });
