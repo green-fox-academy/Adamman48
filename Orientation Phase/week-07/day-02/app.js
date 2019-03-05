@@ -4,6 +4,7 @@ var app = express();
 var PORT = 8080;
 var path = require('path');
 app.use('/assets', express.static('assets'));
+app.use(express.json()); //For POST requests
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
@@ -46,6 +47,44 @@ app.get('/appenda/:appendable', function (req, res) {
     var output = {
         appended: input + "a"
     };
+    res.send(output);
+});
+app.post('/dountil/:action', function (req, res) {
+    var input = req.params.action;
+    var body = req.body.until;
+    var output = {};
+    function sumOutcome(inputNum) {
+        var result = [];
+        for (var i = 1; i <= inputNum; i++) {
+            result.push(i);
+        }
+        ;
+        return result.reduce(function (accumulator, currentvalue) { return accumulator + currentvalue; });
+    }
+    function factorOutcome(inputNum) {
+        var result = inputNum;
+        if (inputNum === 0 || inputNum === 1)
+            return 1;
+        while (inputNum > 1) {
+            inputNum--;
+            result *= inputNum;
+        }
+        return result;
+    }
+    ;
+    input === 'sum' ?
+        output = {
+            result: Number(sumOutcome(body))
+        } :
+        input === 'factor' ?
+            output = {
+                result: Number(factorOutcome(body))
+            } :
+            body === undefined ?
+                output = {
+                    error: 'Please provide a number!'
+                } :
+                null;
     res.send(output);
 });
 app.listen(PORT, function () {

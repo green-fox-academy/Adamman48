@@ -7,6 +7,8 @@ const path = require('path');
 
 app.use('/assets', express.static('assets'));
 
+app.use(express.json()); //For POST requests
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
@@ -56,6 +58,50 @@ app.get('/appenda/:appendable', (req, res) => {
   let output: Object = {
     appended: `${input}a`,
   };
+
+  res.send(output);
+});
+
+app.post('/dountil/:action', (req, res) => {
+  let input: string = req.params.action;
+  let body: number = req.body.until;
+  let output: Object = {};
+
+  function sumOutcome(inputNum: number): number {
+    let result: number[] = [];
+    
+    for (let i: number = 1; i <= inputNum; i++) {
+      result.push(i);
+    };
+
+    return result.reduce((accumulator, currentvalue) => 
+      {return accumulator + currentvalue});
+  }
+
+  function factorOutcome(inputNum: number): number {
+    let result: number = inputNum;
+    if (inputNum === 0 || inputNum === 1) 
+      return 1; 
+    while (inputNum > 1) { 
+      inputNum--;
+      result *= inputNum;
+    }
+    return result;
+  };
+
+  input === 'sum' ?
+    output = {
+      result: Number(sumOutcome(body)),
+    } :
+  input === 'factor' ?
+    output = {
+      result: Number(factorOutcome(body)),
+    } :
+  body === undefined ?
+    output = {
+      error: 'Please provide a number!',
+    } :
+  null;
 
   res.send(output);
 })
