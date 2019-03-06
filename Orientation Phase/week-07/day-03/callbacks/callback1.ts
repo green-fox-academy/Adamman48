@@ -28,6 +28,6 @@ const removeSecondLetter = (inputString: string): string => {
 }
 
 // Exercise 2:
-const words = ['map', 'reduce', 'filter'];
+const words: string[] = ['map', 'reduce', 'filter'];
 console.log(mapWith(words, removeSecondLetter));
 // expected result: ['mp','rdc', 'fle']
