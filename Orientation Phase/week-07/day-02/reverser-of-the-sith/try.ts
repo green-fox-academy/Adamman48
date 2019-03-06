@@ -1,5 +1,7 @@
 'use strict';
 
+const konzola = console.log;
+
 let input: string = `This is a try? I don't know! What the fuck is going on. Believe me.`;
 let tempArray: string[][] = [];
 let output: string[] = [];
@@ -26,5 +28,17 @@ tempArray = tempArray.map(value => value.join(' '))
   
 tempArray.forEach(value => value[0] = value[0].toUpperCase());
 
+//punctuations
+let punctuationList: string[] = [];
+let textFlow: string = input.replace(/\s/g, '').replace(`'`, '').replace(':', '').replace(';', '');
+for (let i: number = 0; i < tempArray.length; i++) {
+  punctuationList.push(textFlow[textFlow.search(/\W/)]);
+  textFlow = textFlow.slice(textFlow.search(/\W/) + 1, textFlow.length);
+}
 
-console.log(tempArray)
+tempArray.map((value, index) => {value.push(punctuationList[index])});
+
+konzola(tempArray)
+
+/* konzola(tempArray);
+konzola(input.split('?')); */
