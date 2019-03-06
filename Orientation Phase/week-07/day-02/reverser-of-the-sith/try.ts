@@ -1,14 +1,15 @@
 'use strict';
 
-  let input: string = `this is a try. i don't know what the fuck is going on.`;
-  let fasz = input.split(/\s/);
-  console.log(fasz);
-  let outputOdd = [];
-  let outputEven = [];
+  let input: string = `This is a try? I don't know! What the fuck is going on. Believe me.`;
+  let fillThis = [];
   let output = [];
-  fasz.forEach((value, index) => {index % 2 !== 0 ? outputEven.push(value) : outputOdd.push(value)})
-  for (let i: number = 0; i < fasz.length; i++) {
-    output.push(outputEven[i]);
-    output.push(outputOdd[i]);
-  }
-  console.log(output);
+  let tempArray = [];
+
+  fillThis = input.toLowerCase().split('?').join('$').split('.').join('$').split('!').join('$').split('$')
+
+  fillThis.splice(0, fillThis.length - 1).forEach(value => tempArray.push(value.split(/\s/)));
+
+  
+
+
+  console.log(tempArray)
