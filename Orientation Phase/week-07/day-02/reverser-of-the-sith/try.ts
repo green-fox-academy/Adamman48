@@ -1,8 +1,8 @@
 'use strict';
 
 let input: string = `This is a try? I don't know! What the fuck is going on. Believe me.`;
-let tempArray = [];
-let output = [];
+let tempArray: string[][] = [];
+let output: string[] = [];
   
 let fillThis: string[] = input.toLowerCase()
   .split('?').join('$')
@@ -20,5 +20,11 @@ for (let i: number = 0; i < tempArray.length; i++) {
     [tempArray[i][j-1], tempArray[i][j]] = [tempArray[i][j], tempArray[i][j-1]];
   }
 }  
+
+tempArray = tempArray.map(value => value.join(' '))
+  .map(value => value.split(''))
+  
+tempArray.forEach(value => value[0] = value[0].toUpperCase());
+
 
 console.log(tempArray)
