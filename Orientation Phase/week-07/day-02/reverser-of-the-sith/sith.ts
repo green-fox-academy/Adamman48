@@ -8,10 +8,16 @@ app.use(express.json());
 
 app.post('sith', (req, res) => {
   let input: string = req.body.text;
-  let startPoint: number = 0;
-  let endPoint: number = input.indexOf('\s' || '\W', startPoint);
+  let startPoints: number[] = [0];
+  let endPoint: number = input.indexOf('\s', startPoint);
   let transformArray: string[] = [];
   let output: {[sith_text: string]: string} = {};
+
+  () => {
+    for (let i: number = 0; i <= input.split('\s').length; i++) {
+      startPoints.push(input.indexOf('\s', startPoints[i]));
+    }
+  }
 
   transformArray.push(input.slice(startPoint, endPoint).toLowerCase());
   startPoint = endPoint;
