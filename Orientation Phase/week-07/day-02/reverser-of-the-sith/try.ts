@@ -2,9 +2,8 @@
 
 const konzola = console.log;
 
-let input: string = `This is a try? I don't know! What the fuck is going on. Believe me.`;
+let input: string = `Is this for real? I don't know what the fuck is going on! Believe me.`;
 let tempArray: string[][] = [];
-let output: string[] = [];
   
 let fillThis: string[] = input.toLowerCase()
   .split('?').join('$')
@@ -16,7 +15,8 @@ fillThis.splice(0, fillThis.length - 1)
 
 tempArray.map((value, index) => 
   {index > 0 ? value.splice(0, 1) : null});
-  
+
+//swapping
 for (let i: number = 0; i < tempArray.length; i++) {
   for (let j: number = 1; j < tempArray[i].length; j += 2) { 
     [tempArray[i][j-1], tempArray[i][j]] = [tempArray[i][j], tempArray[i][j-1]];
@@ -38,7 +38,6 @@ for (let i: number = 0; i < tempArray.length; i++) {
 
 tempArray.map((value, index) => {value.push(punctuationList[index])});
 
-konzola(tempArray)
+konzola(tempArray.map(value => value.join('')).join(' '));
 
-/* konzola(tempArray);
-konzola(input.split('?')); */
+//need to uppercase I as well as putting in random stuff
