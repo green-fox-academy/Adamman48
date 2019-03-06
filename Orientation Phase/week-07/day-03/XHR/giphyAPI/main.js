@@ -7,6 +7,17 @@ http.onload = function () {
     gifData.data.forEach(function (value) {
         var img = value.images.downsized_still.url;
         thumbnails.appendChild(document.createElement('img')).setAttribute('src', img);
+        console.log(gifData);
     });
+    var selectImage = document.querySelectorAll('img');
+    selectImage.forEach(function (value) { return value.addEventListener('click', function () {
+        previewGif(value);
+    }); });
 };
 http.send();
+var previewGif = function (stillGif) {
+    var clickedGifStill = stillGif.getAttribute('src');
+    clickedGifStill.indexOf('_s.gif') > -1 ?
+        (stillGif.setAttribute('src', clickedGifStill.slice(0, clickedGifStill.indexOf('_s.gif')) + ".gif"),
+            stillGif.setAttribute('class', 'selected-image')) : null;
+};
