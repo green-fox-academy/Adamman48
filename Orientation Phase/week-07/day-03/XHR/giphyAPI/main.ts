@@ -5,24 +5,30 @@ let thumbnails: Node = document.querySelector('ul');
 
 http.open('GET', 'https://api.giphy.com/v1/gifs/search?api_key=cYxOl3KoB7Qc0YNvXSKd196h9tv2xYvE&q=starwars&limit=20');
 http.onload = () => {
-  let gifData = JSON.parse(http.responseText);
-  gifData.data.forEach(value => {
-    let img = value.images.downsized_still.url;
-    thumbnails.appendChild(document.createElement('img')).setAttribute('src', img)
-    console.log(gifData)
-  });
-  
+  loadStaticGifs();
+
 let selectImage = document.querySelectorAll('img');
 
-selectImage.forEach(value => value.addEventListener('click', () => {
-    previewGif(value);
-  })
-)};
+selectImage.forEach((value, index) => {value.addEventListener('click', () => {
+  unselectGif();
+  previewGif(value, index);
+  })});
+};
 http.send();
 
-const previewGif = (stillGif) => {
-  let clickedGifStill = stillGif.getAttribute('src');
-  clickedGifStill.indexOf('_s.gif') > -1 ?
-  (stillGif.setAttribute('src', `${clickedGifStill.slice(0, clickedGifStill.indexOf('_s.gif'))}.gif`),
-  stillGif.setAttribute('class', 'selected-image')) : null;
+const previewGif = (stillGif, gifNo) => {
+  stillGif.setAttribute('src', JSON.parse(http.responseText).data[gifNo].images.downsized.url);
+  stillGif.setAttribute('id', 'selected-image');
 };
+
+const unselectGif = () => {
+  document.querySelectorAll('img').forEach(value => {
+    value.setAttribute('id', '');
+  })
+}
+
+const loadStaticGifs = () => {
+  JSON.parse(http.responseText).data.forEach(value =>
+    thumbnails.appendChild(document.createElement('img'))
+      .setAttribute('src', value.images.downsized_still.url));
+  }
