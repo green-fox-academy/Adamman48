@@ -22,8 +22,10 @@ const previewGif = (stillGif, gifNo) => {
 };
 
 const unselectGif = () => {
-  document.querySelectorAll('img').forEach(value => {
+  document.querySelectorAll('img').forEach((value, index) => {
     value.setAttribute('id', '');
+    value.setAttribute('src', 
+      JSON.parse(http.responseText).data[index].images.downsized_still.url);
   })
 }
 
