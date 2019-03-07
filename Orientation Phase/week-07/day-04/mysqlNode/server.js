@@ -26,8 +26,14 @@ connection.connect(function (err) {
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, './assets/views/index.html'));
 });
-app.get('/apibooks', function (req, res) {
-    connection.query('SELECT book_name FROM book_mast;', function (err, rows) {
+app.get('/booknames', function (req, res) {
+    connection.query('SELECT book_name, FROM book_mast;', function (err, rows) {
+        errorHandling(res, err, rows);
+        res.send(rows);
+    });
+});
+app.get('/detailedbooklist', function (req, res) {
+    connection.query("SELECT book_name, book_price, aut_name, cate_descrip, pub_name\n    FROM book_mast\n    INNER JOIN author\n    ON book_mast.aut_id = author.aut_id\n    INNER JOIN category\n    ON book_mast.cate_id = category.cate_id\n    INNER JOIN publisher\n    ON book_mast.pub_id = publisher.pub_id", function (err, rows) {
         errorHandling(res, err, rows);
         res.send(rows);
     });
