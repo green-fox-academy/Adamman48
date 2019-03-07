@@ -11,17 +11,24 @@ var connection = mysql.createConnection({
     database: process.env.DB_DATABASE
 });
 app.use(express.json());
-/* connection.connect((err) => {
-  err ? console.error('Error connecting to DB') :
-    console.log('DB is connected');
+var errorHandling = function (response, error, rows) {
+    error ? (console.error(error),
+        response.status(500).send()) :
+        null;
+    response.send(rows);
+};
+connection.connect(function (err) {
+    err ? console.error('Error connecting to DB') :
+        console.log('DB is connected');
 });
-connection.end(); */
 app.get('/', function (req, res) {
     connection.query('SHOW DATABASES;', function (err, rows) {
-        err ? (console.log(err),
-            res.status(500).send()) :
-            null;
-        res.send(rows);
+        errorHandling(res, err, rows);
+    });
+});
+app.get('/apibooks', function (req, res) {
+    connection.query('SELECT book_name FROM book_mast;', function (err, rows) {
+        errorHandling(res, err, rows);
     });
 });
 app.listen(PORT, function () {
