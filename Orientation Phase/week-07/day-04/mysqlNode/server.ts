@@ -21,6 +21,7 @@ app.get('/', (req, res) => {
   connection.query('SHOW DATABASES;', (err, rows) => {
     err ? (console.log(err),
       res.status(500).send()) :
+        null;
       res.send(rows);
   });
 });
