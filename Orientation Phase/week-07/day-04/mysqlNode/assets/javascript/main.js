@@ -27,23 +27,23 @@ var loadBookNamesList = function (inputData) {
     });
 };
 var loadDetailedTable = function (inputData) {
-    var newRow = document.createElement('tr');
-    var newHeader = document.createElement('th');
-    var newCell = document.createElement('td');
     for (var i = 0; i <= inputData.length; i++) {
-        document.querySelector('table').appendChild(document.createElement('tr'));
+        var newRow = document.createElement('tr');
+        document.querySelector('table').appendChild(newRow);
     }
     ;
     for (var i = 0; i < Object.keys(inputData[0]).length; i++) {
+        var newHeader = document.createElement('th');
         var headerTitles = ['Title', 'Author', 'Category', 'Publisher', 'Price'];
-        document.querySelector('tr').appendChild(document.createElement('th'))
+        document.querySelector('tr').appendChild(newHeader)
             .textContent = "" + headerTitles[i];
     }
     ;
-    var insertHere = document.querySelectorAll('tr');
     for (var i = 1; i <= inputData.length; i++) {
+        var insertHere = document.querySelectorAll('tr');
         for (var j = 0; j < Object.keys(inputData[0]).length; j++) {
-            document.querySelectorAll('tr')[i].appendChild(document.createElement('td')).textContent =
+            var newCell = document.createElement('td');
+            insertHere[i].appendChild(newCell).textContent =
                 "" + Object.values(inputData[i - 1])[j];
         }
         ;

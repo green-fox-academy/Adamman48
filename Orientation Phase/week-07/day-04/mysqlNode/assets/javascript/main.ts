@@ -31,25 +31,22 @@ const loadBookNamesList = (inputData) => {
       .textContent = `${value.book_name}`);
 };
 
-const loadDetailedTable = (inputData) => {
-  let newRow: Node = document.createElement('tr');
-  let newHeader: Node = document.createElement('th');
-  let newCell: Node = document.createElement('td');
-  
+const loadDetailedTable = (inputData) => {  
   for (let i: number = 0; i <= inputData.length; i++) {
-    document.querySelector('table').appendChild(document.createElement('tr'));
+    let newRow: Node = document.createElement('tr');
+    document.querySelector('table').appendChild(newRow);
   };
   for (let i: number = 0; i < Object.keys(inputData[0]).length; i++) {
+    let newHeader: Node = document.createElement('th');
     let headerTitles: string[] = ['Title', 'Author', 'Category', 'Publisher', 'Price'];
-    document.querySelector('tr').appendChild(document.createElement('th'))
+    document.querySelector('tr').appendChild(newHeader)
       .textContent = `${headerTitles[i]}`;
   };
-
-  const insertHere: NodeList = document.querySelectorAll('tr');
-
   for (let i: number = 1; i <= inputData.length; i++) {
+    const insertHere: NodeList = document.querySelectorAll('tr');
     for (let j: number = 0; j < Object.keys(inputData[0]).length; j++) {
-      document.querySelectorAll('tr')[i].appendChild(document.createElement('td')).textContent =
+      let newCell: Node = document.createElement('td');
+      insertHere[i].appendChild(newCell).textContent =
         `${Object.values(inputData[i-1])[j]}`;
     };
   };

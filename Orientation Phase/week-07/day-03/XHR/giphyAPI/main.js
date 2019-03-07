@@ -1,17 +1,31 @@
 'use strict';
-exports.__esModule = true;
-var functions_1 = require("./functions");
 var http = new XMLHttpRequest();
 var thumbnails = document.querySelector('ul');
 http.open('GET', 'https://api.giphy.com/v1/gifs/search?api_key=cYxOl3KoB7Qc0YNvXSKd196h9tv2xYvE&q=starwars&limit=20');
 http.onload = function () {
-    functions_1.loadStaticGifs();
+    loadStaticGifs();
     var selectImage = document.querySelectorAll('img');
     selectImage.forEach(function (value, index) {
         value.addEventListener('click', function () {
-            functions_1.unselectGif();
-            functions_1.previewGif(value, index);
+            unselectGif();
+            previewGif(value, index);
         });
     });
 };
 http.send();
+var previewGif = function (stillGif, gifNo) {
+    stillGif.setAttribute('src', JSON.parse(http.responseText).data[gifNo].images.downsized.url);
+    stillGif.setAttribute('id', 'selected-image');
+};
+var unselectGif = function () {
+    document.querySelectorAll('img').forEach(function (value, index) {
+        value.setAttribute('id', '');
+        value.setAttribute('src', JSON.parse(http.responseText).data[index].images.downsized_still.url);
+    });
+};
+var loadStaticGifs = function () {
+    JSON.parse(http.responseText).data.forEach(function (value) {
+        return thumbnails.appendChild(document.createElement('img'))
+            .setAttribute('src', value.images.downsized_still.url);
+    });
+};
