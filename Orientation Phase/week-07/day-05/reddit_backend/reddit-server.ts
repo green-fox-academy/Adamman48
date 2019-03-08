@@ -43,8 +43,17 @@ app.get('/posts', (req, res) => {
 });
 
 app.post('/posts', (req, res) => {
-  res.set()
-})
+  res.set('Content-type', 'application/json');
+  let newPost = req.body;
+  req.get('Content-type') === 'application/json' ?
+    reddit.query(`INSERT INTO posts
+      (post_title, post_content, user_name)
+      VALUES ('${newPost.title}', '${newPost.url}', '${newPost.user}');`, 
+        (error, rows) => {
+          errorHandling(res, error);
+          }) :
+            null;
+});
 
 app.listen(PORT, () => {
   konzola('What is thy bidding, my master?');

@@ -35,7 +35,20 @@ app.get('/posts', function (req, res) {
         }) : res.send('Request is invalid. You loser!');
 });
 app.post('/posts', function (req, res) {
-    res.set();
+    res.set('Content-type', 'application/json');
+    var newPost = req.body;
+    req.get('Content-type') === 'application/json' ?
+        reddit.query("INSERT INTO posts\n      (post_title, post_content, user_name)\n      VALUES ('" + newPost.title + "', '" + newPost.url + "', '" + newPost.user + "');", function (error, rows) {
+            errorHandling(res, error);
+            konzola(rows);
+        })
+        /* reddit.query(`SELECT * FROM posts
+          WHERE post_content = `)    */
+        :
+            null;
+    /*  req.get('Content-type') === 'application/json' ?
+       
+     */
 });
 app.listen(PORT, function () {
     konzola('What is thy bidding, my master?');
