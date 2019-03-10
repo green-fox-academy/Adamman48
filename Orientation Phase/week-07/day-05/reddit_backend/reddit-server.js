@@ -1,4 +1,5 @@
 'use strict';
+exports.__esModule = true;
 require('dotenv').config();
 var PORT = 3000;
 var express = require('express');
@@ -31,7 +32,7 @@ app.get('/posts', function (req, res) {
     req.get('Content-type') === 'application/json' ?
         reddit.query("SELECT * FROM posts;", function (error, rows) {
             errorHandling(res, error);
-            res.json(rows);
+            res.send(rows);
         }) : res.send('Request is invalid. You loser!');
 });
 app.post('/posts', function (req, res) {
@@ -46,6 +47,33 @@ app.post('/posts', function (req, res) {
             });
         }) :
         res.send('Nope, wrong content. Try something else laddy!');
+});
+app.put('/posts/:id/downvote', function (req, res) {
+    res.set('Content-type', 'application/json');
+    var postId = req.params.id;
+    req.get('Content-type') === 'application/json' ?
+        reddit.query("UPDATE posts SET post_score = post_score - 1\n      WHERE post_id = " + postId + ";", function (error, output) {
+            errorHandling(res, error);
+            reddit.query("SELECT * FROM posts\n          WHERE post_id = " + postId + ";", function (error, rows) {
+                errorHandling(res, error);
+                res.json(rows);
+                konzola(rows);
+            });
+        }) :
+        res.send('Invalid request. Show me something else!');
+});
+app.put('/posts/:id/upvote', function (req, res) {
+    res.set('Content-type', 'application/json');
+    var postId = req.params.id;
+    req.get('Content-type') === 'application/json' ?
+        reddit.query("UPDATE posts SET post_score = post_score + 1\n      WHERE post_id = " + postId + ";", function (error, okPacket) {
+            errorHandling(res, error);
+            reddit.query("SELECT * FROM posts \n          WHERE post_id = " + postId + ";", function (error, rows) {
+                errorHandling(res, error);
+                res.send(rows);
+            });
+        }) :
+        res.send('Invalid request. Show me something else!');
 });
 app.listen(PORT, function () {
     konzola('What is thy bidding, my master?');
