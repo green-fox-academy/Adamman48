@@ -33,7 +33,7 @@ app.get('/hello', (req, res) => {
   res.send('Hello Boss!');
 });
 
-app.post('/create_user', (req, res) => {
+app.post('/subscription', (req, res) => {
   res.set('Content-type', 'text/plain');
   let newUser = req.body;
   req.get('Content-type') === 'application/json' ?
@@ -44,6 +44,18 @@ app.post('/create_user', (req, res) => {
         res.status(200).send('Account successfully created! Welcome!');
       }) :
   res.send(`Invalid request. You naughty being!`);
+});
+
+app.delete('/subscription', (req, res) => {
+  res.set('Content-type', 'text/plain');
+  let deleteAcc = req.body.user;
+  req.get('Content-type') === 'application/json' ?
+    reddit.query(`DELETE FROM users
+      WHERE user_name = '${deleteAcc}';`, (error, okPacket) => {
+        errorHandling(res, error);
+        res.status(200).send('Account deleted successfully!');
+    }) :
+  res.send('Invalid request. You naughty being!');
 });
 
 app.get('/posts', (req, res) => {
