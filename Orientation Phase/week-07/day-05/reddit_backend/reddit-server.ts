@@ -67,13 +67,12 @@ app.put('/posts/:id/downvote', (req, res) => {
     reddit.query(`UPDATE posts SET post_score = post_score - 1
       WHERE post_id = ${postId};`, (error, output) => {
         errorHandling(res, error);
-        reddit.query(`SELECT * FROM posts
-          WHERE post_id = ${postId};`, (error, rows) => {
-            errorHandling(res, error);
-            res.json(rows);
-            konzola(rows);
-          });
-      }) :
+    reddit.query(`SELECT * FROM posts
+      WHERE post_id = ${postId};`, (error, rows) => {
+        errorHandling(res, error);
+        res.json(rows);
+    });
+  }) :
     res.send('Invalid request. Show me something else!')
 });
 
@@ -84,14 +83,30 @@ app.put('/posts/:id/upvote', (req, res) => {
     reddit.query(`UPDATE posts SET post_score = post_score + 1
       WHERE post_id = ${postId};`, (error, okPacket) => {
         errorHandling(res, error);
-        reddit.query(`SELECT * FROM posts 
-          WHERE post_id = ${postId};`, (error, rows) => {
-            errorHandling(res, error);
-            res.send(rows);
-          });
-      }) :
+    reddit.query(`SELECT * FROM posts 
+      WHERE post_id = ${postId};`, (error, rows) => {
+      errorHandling(res, error);
+      res.json(rows);
+    });
+  }) :
   res.send('Invalid request. Show me something else!');
 });
+
+app.delete('/posts/:id', (req, res) => {
+  res.set('Content-type', 'application/json');
+  let postId = req.params.id;
+  req.get('Content-type') === 'application/json' ?
+    reddit.query(`DELETE FROM posts
+      WHERE post_id = ${postId}`, (error, okPacket) => {
+        errorHandling(res, error);
+        res.json({
+          message: `You've successfully deleted your post (ID: ${postId})!`,
+      });
+    }) :
+  res.send('Invalid request. Show me something else!');
+});
+
+
 
 app.listen(PORT, () => {
   konzola('What is thy bidding, my master?');
