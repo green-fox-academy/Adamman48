@@ -1,5 +1,4 @@
 'use strict';
-exports.__esModule = true;
 require('dotenv').config();
 var PORT = 3000;
 var express = require('express');
@@ -27,23 +26,35 @@ reddit.connect(function (error) {
 app.get('/hello', function (req, res) {
     res.send('Hello Boss!');
 });
+app.post('/create_user', function (req, res) {
+    res.set('Content-type', 'text/plain');
+    var newUser = req.body;
+    req.get('Content-type') === 'application/json' ?
+        reddit.query("INSERT INTO users\n      (user_name, profile_pic)\n      VALUES ('" + newUser.user + "', '" + newUser.picture + "');", function (error, okPacket) {
+            error ? res.send('User name is already taken. Please choose another one!') :
+                res.status(200).send('Account successfully created! Welcome!');
+        }) :
+        res.send("Invalid request. You naughty being!");
+});
 app.get('/posts', function (req, res) {
     res.set('Content-type', 'application/json');
     req.get('Content-type') === 'application/json' ?
         reddit.query("SELECT * FROM posts;", function (error, rows) {
             errorHandling(res, error);
-            res.send(rows);
+            res.status(200).json(rows);
         }) : res.send('Request is invalid. You loser!');
 });
 app.post('/posts', function (req, res) {
     res.set('Content-type', 'application/json');
     var newPost = req.body;
+    var user = req.body.user;
     req.get('Content-type') === 'application/json' ?
-        reddit.query("INSERT INTO posts\n      (post_title, post_content, user_name)\n      VALUES ('" + newPost.title + "', '" + newPost.url + "', '" + newPost.user + "');", function (error, okPacket) {
+        reddit.query("INSERT INTO posts\n      (post_title, post_content, user_name)\n      VALUES ('" + newPost.title + "', '" + newPost.content + "', '" + newPost.user + "');", function (error, okPacket) {
             errorHandling(res, error);
-            reddit.query("SELECT * FROM posts \n            WHERE post_id = " + okPacket.insertId, function (error, rows) {
+            reddit.query("SELECT * FROM posts \n      WHERE post_id = " + okPacket.insertId, function (error, rows) {
                 errorHandling(res, error);
-                res.json(rows);
+                reddit.query("UPDATE users SET user_posts = user_posts + 1\n          WHERE user_name = '" + user + "';", function (res, error) { });
+                res.status(200).json(rows);
             });
         }) :
         res.send('Nope, wrong content. Try something else laddy!');
@@ -56,7 +67,7 @@ app.put('/posts/:id/downvote', function (req, res) {
             errorHandling(res, error);
             reddit.query("SELECT * FROM posts\n      WHERE post_id = " + postId + ";", function (error, rows) {
                 errorHandling(res, error);
-                res.json(rows);
+                res.status(200).json(rows);
             });
         }) :
         res.send('Invalid request. Show me something else!');
@@ -69,7 +80,7 @@ app.put('/posts/:id/upvote', function (req, res) {
             errorHandling(res, error);
             reddit.query("SELECT * FROM posts \n      WHERE post_id = " + postId + ";", function (error, rows) {
                 errorHandling(res, error);
-                res.json(rows);
+                res.status(200).json(rows);
             });
         }) :
         res.send('Invalid request. Show me something else!');
@@ -77,10 +88,12 @@ app.put('/posts/:id/upvote', function (req, res) {
 app["delete"]('/posts/:id', function (req, res) {
     res.set('Content-type', 'application/json');
     var postId = req.params.id;
+    var user = req.body.user;
     req.get('Content-type') === 'application/json' ?
         reddit.query("DELETE FROM posts\n      WHERE post_id = " + postId, function (error, okPacket) {
             errorHandling(res, error);
-            res.json({
+            reddit.query("UPDATE users SET user_posts = user_posts - 1\n          WHERE user_name = '" + user + "';", function (res, error) { });
+            res.status(200).json({
                 message: "You've successfully deleted your post (ID: " + postId + ")!"
             });
         }) :
@@ -96,7 +109,7 @@ app.put('/posts/:id', function (req, res) {
             errorHandling(res, error);
             reddit.query("SELECT * FROM posts \n      WHERE post_id = " + postId + ";", function (error, rows) {
                 errorHandling(res, error);
-                res.json(rows);
+                res.status(200).json(rows);
             });
         }) :
         res.send('Invalid request. Show me something else!');

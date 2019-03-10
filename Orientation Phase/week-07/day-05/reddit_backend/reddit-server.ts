@@ -1,7 +1,5 @@
 'use strict';
 
-import { KeyObject } from "crypto";
-
 require('dotenv').config();
 const PORT: number = 3000;
 const express = require ('express');
@@ -35,30 +33,46 @@ app.get('/hello', (req, res) => {
   res.send('Hello Boss!');
 });
 
+app.post('/create_user', (req, res) => {
+  res.set('Content-type', 'text/plain');
+  let newUser = req.body;
+  req.get('Content-type') === 'application/json' ?
+    reddit.query(`INSERT INTO users
+      (user_name, profile_pic)
+      VALUES ('${newUser.user}', '${newUser.picture}');`, (error, okPacket) => {
+        error ? res.send('User name is already taken. Please choose another one!') :
+        res.status(200).send('Account successfully created! Welcome!');
+      }) :
+  res.send(`Invalid request. You naughty being!`);
+});
+
 app.get('/posts', (req, res) => {
   res.set('Content-type', 'application/json');
   req.get('Content-type') === 'application/json' ?
     reddit.query(`SELECT * FROM posts;`, (error, rows) => {
     errorHandling(res, error);
-    res.send(rows);
+    res.status(200).json(rows);
   }) : res.send('Request is invalid. You loser!');
 });
 
 app.post('/posts', (req, res): void => {
   res.set('Content-type', 'application/json');
   let newPost = req.body;
+  let user = req.body.user;
   req.get('Content-type') === 'application/json' ?
     reddit.query(`INSERT INTO posts
       (post_title, post_content, user_name)
-      VALUES ('${newPost.title}', '${newPost.url}', '${newPost.user}');`, 
+      VALUES ('${newPost.title}', '${newPost.content}', '${newPost.user}');`, 
         (error, okPacket) => {
           errorHandling(res, error);
-          reddit.query(`SELECT * FROM posts 
-            WHERE post_id = ${okPacket.insertId}`, (error, rows) => {
-            errorHandling(res, error);
-            res.json(rows);
-          })}) :
-          res.send('Nope, wrong content. Try something else laddy!');
+    reddit.query(`SELECT * FROM posts 
+      WHERE post_id = ${okPacket.insertId}`, (error, rows) => {
+        errorHandling(res, error);
+        reddit.query(`UPDATE users SET user_posts = user_posts + 1
+          WHERE user_name = '${user}';`, (res, error) => {});
+        res.status(200).json(rows);
+    })}) :
+  res.send('Nope, wrong content. Try something else laddy!');
 });
 
 app.put('/posts/:id/downvote', (req, res) => {
@@ -71,7 +85,7 @@ app.put('/posts/:id/downvote', (req, res) => {
     reddit.query(`SELECT * FROM posts
       WHERE post_id = ${postId};`, (error, rows) => {
         errorHandling(res, error);
-        res.json(rows);
+        res.status(200).json(rows);
     });
   }) :
     res.send('Invalid request. Show me something else!')
@@ -87,7 +101,7 @@ app.put('/posts/:id/upvote', (req, res) => {
     reddit.query(`SELECT * FROM posts 
       WHERE post_id = ${postId};`, (error, rows) => {
       errorHandling(res, error);
-      res.json(rows);
+      res.status(200).json(rows);
     });
   }) :
   res.send('Invalid request. Show me something else!');
@@ -96,11 +110,14 @@ app.put('/posts/:id/upvote', (req, res) => {
 app.delete('/posts/:id', (req, res) => {
   res.set('Content-type', 'application/json');
   let postId = req.params.id;
+  let user = req.body.user;
   req.get('Content-type') === 'application/json' ?
     reddit.query(`DELETE FROM posts
       WHERE post_id = ${postId}`, (error, okPacket) => {
         errorHandling(res, error);
-        res.json({
+        reddit.query(`UPDATE users SET user_posts = user_posts - 1
+          WHERE user_name = '${user}';`, (res, error) => {});
+        res.status(200).json({
           message: `You've successfully deleted your post (ID: ${postId})!`,
       });
     }) :
@@ -120,7 +137,7 @@ app.put('/posts/:id', (req, res) => {
     reddit.query(`SELECT * FROM posts 
       WHERE post_id = ${postId};`, (error, rows) => {
         errorHandling(res, error);
-        res.json(rows);
+        res.status(200).json(rows);
     });
     }) :
   res.send('Invalid request. Show me something else!');
