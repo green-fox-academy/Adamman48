@@ -53,7 +53,8 @@ app.post('/posts', (req, res): void => {
       VALUES ('${newPost.title}', '${newPost.url}', '${newPost.user}');`, 
         (error, okPacket) => {
           errorHandling(res, error);
-          reddit.query(`SELECT * FROM posts WHERE post_id = ${okPacket.insertId}`, (error, rows) => {
+          reddit.query(`SELECT * FROM posts 
+            WHERE post_id = ${okPacket.insertId}`, (error, rows) => {
             errorHandling(res, error);
             res.json(rows);
           })}) :
@@ -106,7 +107,24 @@ app.delete('/posts/:id', (req, res) => {
   res.send('Invalid request. Show me something else!');
 });
 
-
+app.put('/posts/:id', (req, res) => {
+  res.set('Content-type', 'application/json');
+  let postId = req.params.id;
+  let editedContent = req.body.content;
+  let editedTitle = req.body.title;
+  req.get('Content-type') === 'application/json' ?
+    reddit.query(`UPDATE posts SET post_content = '${editedContent}',
+      post_title = '${editedTitle}'
+      WHERE post_id = ${postId};`, (error, okPacket) => {
+        errorHandling(res, error);
+    reddit.query(`SELECT * FROM posts 
+      WHERE post_id = ${postId};`, (error, rows) => {
+        errorHandling(res, error);
+        res.json(rows);
+    });
+    }) :
+  res.send('Invalid request. Show me something else!');
+});
 
 app.listen(PORT, () => {
   konzola('What is thy bidding, my master?');

@@ -41,7 +41,7 @@ app.post('/posts', function (req, res) {
     req.get('Content-type') === 'application/json' ?
         reddit.query("INSERT INTO posts\n      (post_title, post_content, user_name)\n      VALUES ('" + newPost.title + "', '" + newPost.url + "', '" + newPost.user + "');", function (error, okPacket) {
             errorHandling(res, error);
-            reddit.query("SELECT * FROM posts WHERE post_id = " + okPacket.insertId, function (error, rows) {
+            reddit.query("SELECT * FROM posts \n            WHERE post_id = " + okPacket.insertId, function (error, rows) {
                 errorHandling(res, error);
                 res.json(rows);
             });
@@ -82,6 +82,21 @@ app["delete"]('/posts/:id', function (req, res) {
             errorHandling(res, error);
             res.json({
                 message: "You've successfully deleted your post (ID: " + postId + ")!"
+            });
+        }) :
+        res.send('Invalid request. Show me something else!');
+});
+app.put('/posts/:id', function (req, res) {
+    res.set('Content-type', 'application/json');
+    var postId = req.params.id;
+    var editedContent = req.body.content;
+    var editedTitle = req.body.title;
+    req.get('Content-type') === 'application/json' ?
+        reddit.query("UPDATE posts SET post_content = '" + editedContent + "',\n      post_title = '" + editedTitle + "'\n      WHERE post_id = " + postId + ";", function (error, okPacket) {
+            errorHandling(res, error);
+            reddit.query("SELECT * FROM posts \n      WHERE post_id = " + postId + ";", function (error, rows) {
+                errorHandling(res, error);
+                res.json(rows);
             });
         }) :
         res.send('Invalid request. Show me something else!');
