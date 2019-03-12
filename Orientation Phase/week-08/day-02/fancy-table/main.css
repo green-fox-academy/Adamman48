@@ -1,0 +1,67 @@
+body {
+  background: rgb(87, 87, 216);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+}
+
+table {
+  font-size: 25px;
+  font-family: Arial, Helvetica, sans-serif; 
+  text-align: left;
+  color: rgb(78, 78, 78);
+  padding: 0;
+  margin: 0;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 3vh 35vh 3vh 3vh;
+  border-top: 2px solid rgb(143, 143, 143);
+}
+
+th {
+  background: black;
+  padding: 4vh 35vh 4vh 4vh;
+  font-weight: normal;
+  border-bottom: 4px solid rgb(143, 143, 143);
+  color: rgb(206, 198, 198);
+  font-size: 30px;
+}
+
+tr:nth-child(2n+3) {
+  background: white;
+}
+
+tr:nth-child(even):not(:last-child) {
+  background: rgb(219, 216, 216);
+}
+
+td:nth-child(even),
+th:nth-child(even) {
+  border-left: 2px solid rgb(143, 143, 143);
+}
+
+th:nth-child(1) {
+  border-top-left-radius: 5px;
+}
+
+th:nth-child(2) {
+  border-top-right-radius: 5px;
+}
+
+tr:last-child td:nth-child(1) {
+  border-bottom-left-radius: 5px;
+  background: rgb(219, 216, 216);
+}
+
+tr:last-child td:nth-child(2) {
+  border-bottom-right-radius: 5px;
+  background: rgb(219, 216, 216);
+}
+
+td[data-currency='dollar']::before {
+  content: '$ ';
+}
