@@ -13,41 +13,59 @@ button {
   padding: 15px 70px 15px 70px;
   text-align: center;
   opacity: 0.9;
-  box-shadow: 0 5px grey;
   border-left: 0;
   border-right: 0;
-  border-bottom: 0;
+  border-top: 0;
 }
 
 button:active {
   position: relative;
   top: 5px;
-  border-top: 0;
+  padding: 15px 70px 15px 65px;
 }
 
 button:nth-child(1) {
   background: linear-gradient(#6783fd, #2246e4);
-  box-shadow: 0 5px #0522a1;
+  border-bottom: 5px solid #0522a1;
 }
 
 button:nth-child(2) {
   background: linear-gradient(#42ca31, #219612);
-  box-shadow: 0 5px #116905;
+  border-bottom: 5px solid #116905;
 }
 
 button:nth-child(3) {
   background: linear-gradient(#ff4b4b, #e60303);
-  box-shadow: 0 5px #920303;
+  border-bottom: 5px solid #920303;
 }
 
 button:nth-child(1):active {
-  box-shadow: 0 -5px #0522a1;
+  background: linear-gradient(#2246e4, #6783fd);
+  border-top: 5px solid #0726b3;
+  border-bottom: 0;
+  border-left: 5px solid #0726b3;
+  box-shadow: 0;
+  opacity: 0.9;
 }
 
 button:nth-child(2):active {
-  box-shadow: 0 -5px #116905;
+  background: linear-gradient(#219612,#42ca31);
+  border-top: 5px solid #158306;
+  border-bottom: 0;
+  border-left: 5px solid #158306;
+  box-shadow: 0;
+  opacity: 0.9;
 }
 
 button:nth-child(3):active {
-  box-shadow: 0 -5px #920303;
+  background: linear-gradient(#e60303, #ff4b4b);
+  border-top: 5px solid #aa0404;
+  border-bottom: 0;
+  border-left: 5px solid #aa0404;
+  box-shadow: 0;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity: 0.7;
 }
