@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.container {
+  display: flex;
+  width: 900px;
+  height: 100%;
+}
+
+.item {
+  height: 200px;
+  width: 25%;
+}
+
+.green {
+  background: rgb(20, 238, 20);
+}
+
+.yellow {
+  background: rgb(255, 255, 73);
+  flex-grow: 1;
+}
+
+.purple {
+  background: rgb(197, 9, 197);
+}
+
+@media (max-width: 900px) {
+  body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: auto;
+  }
+  
+  .item {
+    width: auto;
+  }
+
+  .green {
+    background: rgb(20, 238, 20);
+  }
+  
+  .yellow {
+    background: rgb(255, 255, 73);
+  }
+  
+  .purple {
+    background: rgb(197, 9, 197);
+  }
+}
