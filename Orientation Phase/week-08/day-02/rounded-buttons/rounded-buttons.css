@@ -10,10 +10,9 @@ button {
   font-family: Arial, Helvetica, sans-serif;
   color: aliceblue;
   border-radius: 10px;
-  padding: 15px 70px 15px 70px;
+  padding: 15px 70px 15px 65px;
   text-align: center;
   opacity: 0.9;
-  border-left: 0;
   border-right: 0;
   border-top: 0;
 }
@@ -27,45 +26,55 @@ button:active {
 button:nth-child(1) {
   background: linear-gradient(#6783fd, #2246e4);
   border-bottom: 5px solid #0522a1;
+  border-right: 3px solid #0522a1;
 }
 
 button:nth-child(2) {
   background: linear-gradient(#42ca31, #219612);
   border-bottom: 5px solid #116905;
+  border-right: 3px solid #116905;
 }
 
 button:nth-child(3) {
   background: linear-gradient(#ff4b4b, #e60303);
   border-bottom: 5px solid #920303;
+  border-right: 3px solid #920303;
 }
 
 button:nth-child(1):active {
   background: linear-gradient(#2246e4, #6783fd);
   border-top: 5px solid #0726b3;
   border-bottom: 0;
-  border-left: 5px solid #0726b3;
+  border-left: 3px solid #0726b3;
+  border-right: 0;
   box-shadow: 0;
-  opacity: 0.9;
+  filter: brightness(90%);
+  cursor: grabbing
 }
 
 button:nth-child(2):active {
   background: linear-gradient(#219612,#42ca31);
   border-top: 5px solid #158306;
   border-bottom: 0;
-  border-left: 5px solid #158306;
+  border-left: 3px solid #158306;
+  border-right: 0;
   box-shadow: 0;
-  opacity: 0.9;
+  filter: brightness(90%);
+  cursor: grabbing
 }
 
 button:nth-child(3):active {
   background: linear-gradient(#e60303, #ff4b4b);
   border-top: 5px solid #aa0404;
   border-bottom: 0;
-  border-left: 5px solid #aa0404;
+  border-left: 3px solid #aa0404;
+  border-right: 0;
   box-shadow: 0;
-  opacity: 0.9;
+  filter: brightness(90%);
+  cursor: grabbing
 }
 
 button:hover {
-  opacity: 0.7;
+  cursor: pointer;
+  filter: brightness(120%)
 }
