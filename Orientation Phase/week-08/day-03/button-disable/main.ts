@@ -1,7 +1,7 @@
 'use strict';
 
 const signUpActive: HTMLElement = document.querySelector('.choose-animal');
-const chimpLove: HTMLElement = document.querySelector('.sign-up')
+const chimpLove: HTMLElement = document.querySelector('.sign-up');
 const chimpUp: NodeList = chimpLove.querySelectorAll('input');
 const signUp: NodeList = signUpActive.querySelectorAll('input');
 const baboon: HTMLElement = document.querySelector('#baboon');

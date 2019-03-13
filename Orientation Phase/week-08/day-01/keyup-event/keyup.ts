@@ -5,6 +5,6 @@
 3) Display the last pressed key's code as "Last pressed key code is: __" */
 
 window.addEventListener('keyup', (event) => {
-  console.log(event.target);
+  console.log(event.currentTarget);
   document.querySelector('h1').textContent = `Last pressed key code is: ${event.keyCode}`;
 });

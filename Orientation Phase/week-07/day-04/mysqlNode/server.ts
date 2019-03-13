@@ -16,7 +16,7 @@ const connection = mysql.createConnection({
 app.use('/assets', express.static('assets'));
 app.use(express.json());
 
-const errorHandling = (response, error, rows) => {
+const errorHandling = (response, error) => {
   error ? (console.error(error),
       response.status(500).send()) :
         null;
@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 
 app.get('/booknames', (req, res) => {
   connection.query('SELECT book_name FROM book_mast;', (err, rows) => {
-    errorHandling(res, err, rows);
+    errorHandling(res, err);
     res.send(rows);
   });
 });
@@ -47,7 +47,7 @@ app.get('/detailedbooklist', (req, res) => {
     ON book_mast.cate_id = category.cate_id
     INNER JOIN publisher
     ON book_mast.pub_id = publisher.pub_id;`, (err, rows) => {
-      errorHandling(res, err, rows);
+      errorHandling(res, err);
       res.send(rows);
     });
 });
