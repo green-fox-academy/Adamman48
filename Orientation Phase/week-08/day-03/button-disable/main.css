@@ -1,0 +1,75 @@
+body {
+  display: flex;
+  height: 100vh;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(rgb(43, 121, 43), rgb(80, 219, 80));
+}
+
+div:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+div:not([class='container']):not([class='submit-buttons']) {
+  border: 1px dashed black;
+  border-radius: 4px;
+  padding: 10px 20px 10px 20px;
+}
+
+div:not([class='container']):not([class='submit-buttons']) input {
+  width: 10px;
+}
+
+div:not([class='container']):not([class='submit-buttons']) label:not(:first-child) {
+  width: 120px;
+}
+
+label:first-child {
+  margin-bottom: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background: rgb(230, 213, 213);
+  padding: 30px;
+  height: 65vh;
+  width: 50vh;
+  opacity: 0.8;
+  border-radius: 7px;
+  font-size: 17px;
+}
+
+.choose-animal {
+  flex-direction: column;
+  display: flex;
+}
+
+.sign-up {
+  flex-direction: column;
+  display: flex;
+}
+
+.submit-buttons {
+  margin-top: 10px;
+}
+
+.submit-buttons input {
+  background: linear-gradient(rgb(248, 188, 76), orange);
+  padding: 10px;
+  border-radius: 4px;
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.submit-buttons input[disabled='true'] {
+  background: linear-gradient(rgb(248, 188, 76), orange);
+  padding: 10px;
+  border-radius: 4px;
+  color: black;
+  opacity: 0.5;
+  font-size: 15px;
+  font-weight: bold;
+}
